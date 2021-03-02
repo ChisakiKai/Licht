@@ -1,8 +1,8 @@
-'''#TODO
+"""#TODO
 
 Dank-del
 2020-12-29
-'''
+"""
 
 import importlib
 import re
@@ -13,15 +13,21 @@ from sys import argv
 import requests
 from pyrogram import idle, Client
 from telegram import Update, ParseMode, InlineKeyboardMarkup, InlineKeyboardButton
-from telegram.error import (TelegramError, Unauthorized, BadRequest,
-                            TimedOut, ChatMigrated, NetworkError)
+from telegram.error import (
+    TelegramError,
+    Unauthorized,
+    BadRequest,
+    TimedOut,
+    ChatMigrated,
+    NetworkError,
+)
 from telegram.ext import (
     CallbackContext,
     CommandHandler,
     MessageHandler,
     CallbackQueryHandler,
     Filters,
-    messagequeue
+    messagequeue,
 )
 from telegram.ext.dispatcher import DispatcherHandlerStop
 from telegram.utils.helpers import escape_markdown
@@ -120,13 +126,13 @@ for module_name in ALL_MODULES:
 
 # do not async
 def send_help(chat_id, text, keyboard=None):
-    '''#TODO
+    """#TODO
 
     Params:
         chat_id  -
         text     -
         keyboard -
-    '''
+    """
 
     if not keyboard:
         keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
@@ -136,25 +142,26 @@ def send_help(chat_id, text, keyboard=None):
 
 
 def test(update: Update, context: CallbackContext):
-    '''#TODO
+    """#TODO
 
     Params:
         update: Update           -
         context: CallbackContext -
-    '''
+    """
 
     # pprint(eval(str(update)))
     # update.effective_message.reply_text("Hola tester! _I_ *have* `markdown`", parse_mode=ParseMode.MARKDOWN)
     update.effective_message.reply_text("This person edited a message")
     print(update.effective_message)
 
+
 def start(update: Update, context: CallbackContext):
-    '''#TODO
+    """#TODO
 
     Params:
         update: Update           -
         context: CallbackContext -
-    '''
+    """
     chat = update.effective_chat
     args = context.args
     if update.effective_chat.type == "private":
@@ -222,12 +229,12 @@ def start(update: Update, context: CallbackContext):
 
 # for test purposes
 def error_callback(update, context):
-    '''#TODO
+    """#TODO
 
     Params:
         update  -
         context -
-    '''
+    """
 
     try:
         raise context.error
@@ -250,13 +257,14 @@ def error_callback(update, context):
         pass
         # handle all other telegram related errors
 
+
 def help_button(update, context):
-    '''#TODO
+    """#TODO
 
     Params:
         update  -
         context -
-    '''
+    """
 
     query = update.callback_query
     mod_match = re.match(r"help_module\((.+?)\)", query.data)
@@ -269,12 +277,9 @@ def help_button(update, context):
     try:
         if mod_match:
             module = mod_match.group(1)
-            text = (
-                "Here is the help for the *{}* module:\n".format(
-                    HELPABLE[module].__mod_name__
-                )
-                + HELPABLE[module].get_help(update.effective_chat.id)
-            )
+            text = "Here is the help for the *{}* module:\n".format(
+                HELPABLE[module].__mod_name__
+            ) + HELPABLE[module].get_help(update.effective_chat.id)
             query.message.edit_text(
                 text=text,
                 parse_mode=ParseMode.MARKDOWN,
@@ -319,13 +324,14 @@ def help_button(update, context):
     except BadRequest:
         pass
 
+
 def get_help(update, context):
-    '''#TODO
+    """#TODO
 
     Params:
         update  -
         context -
-    '''
+    """
 
     chat = update.effective_chat  # type: Optional[Chat]
     args = update.effective_message.text.split(None, 1)
@@ -367,14 +373,15 @@ def get_help(update, context):
     else:
         send_help(chat.id, (gs(chat.id, "pm_help_text")))
 
+
 def send_settings(chat_id, user_id, user=False):
-    '''#TODO
+    """#TODO
 
     Params:
         chat_id -
         user_id -
         user    -
-    '''
+    """
 
     if user:
         if USER_SETTINGS:
@@ -417,12 +424,12 @@ def send_settings(chat_id, user_id, user=False):
 
 
 def settings_button(update: Update, context: CallbackContext):
-    '''#TODO
+    """#TODO
 
     Params:
         update: Update           -
         context: CallbackContext -
-    '''
+    """
 
     query = update.callback_query
     user = update.effective_user
@@ -507,13 +514,14 @@ def settings_button(update: Update, context: CallbackContext):
         else:
             log.exception("Exception in settings buttons. %s", str(query.data))
 
+
 def get_settings(update: Update, context: CallbackContext):
-    '''#TODO
+    """#TODO
 
     Params:
         update: Update           -
         context: CallbackContext -
-    '''
+    """
 
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
@@ -544,23 +552,25 @@ def get_settings(update: Update, context: CallbackContext):
     else:
         send_settings(chat.id, user.id, True)
 
+
 def donate(update: Update, context: CallbackContext):
-    '''#TODO
+    """#TODO
 
     Params:
         update: Update           -
         context: CallbackContext -
-    '''
+    """
 
     update.effective_message.reply_text("I'm free for everyone! >_<")
 
+
 def migrate_chats(update: Update, context: CallbackContext):
-    '''#TODO
+    """#TODO
 
     Params:
         update: Update           -
         context: CallbackContext -
-    '''
+    """
 
     msg = update.effective_message  # type: Optional[Message]
     if msg.migrate_to_chat_id:
@@ -581,7 +591,7 @@ def migrate_chats(update: Update, context: CallbackContext):
 
 
 def main():
-    '''#TODO'''
+    """#TODO"""
 
     test_handler = CommandHandler("test", test, run_async=True)
     start_handler = CommandHandler("start", start, pass_args=True, run_async=True)
@@ -632,6 +642,7 @@ def main():
         telethn.run_until_disconnected()
     updater.idle()
     _message_queue.stop()
+
 
 if __name__ == "__main__":
     kp.start()
