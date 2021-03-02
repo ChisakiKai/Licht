@@ -389,8 +389,10 @@ def connect_button(update, context):
 
 from tg_bot.modules.language import gs
 
+
 def get_help(chat):
     return gs(chat, "connections_help")
+
 
 CONNECT_CHAT_HANDLER = CommandHandler("connect", connect_chat, pass_args=True)
 CONNECTION_CHAT_HANDLER = CommandHandler("connection", connection_chat, run_async=True)

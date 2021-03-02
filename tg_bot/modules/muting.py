@@ -233,8 +233,10 @@ def temp_mute(update: Update, context: CallbackContext) -> str:
 
     return ""
 
+
 def get_help(chat):
     return gs(chat, "muting_help")
+
 
 MUTE_HANDLER = CommandHandler("mute", mute, run_async=True)
 UNMUTE_HANDLER = CommandHandler("unmute", unmute, run_async=True)
