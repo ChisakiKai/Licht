@@ -1,7 +1,8 @@
 # Language name in their native
 language: "English 🇺🇲"
 # name of people(s) who worked on this translation
-authors: "@dank_as_fuck"
+authors: "@dank_as_fuck" 
+edited: "Anomaliii"
 
 # languages
 curr_chat_lang: "Hey. Your current language is {}, select the one you want from the buttons below :)"
@@ -10,13 +11,13 @@ set_chat_lang: "Great, {} it is from now on!"
 
 pm_start_text: |
    Hi {}, my name is {}!
-   I am an Anime themed group management bot with some fun extras ;)
+   I am an Anime themed group management bot with some fun extras [;)](https://telegra.ph/file/7437d2bf49d368994e787.jpg)
 
    You can find the list of available commands with /help.
-grp_start_text: "Hi, I'm Kigyo."
+grp_start_text: "Hi, I'm Licht."
 
 pm_help_text: |
-   Hello there! My name is *Kigyo*. A part of *Eagle Union*.
+   Hello there! My name is *Licht*. A part of *Zero Union*.
    I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of
    the things I can help you with.
    *Main* commands available:
@@ -28,10 +29,10 @@ pm_help_text: |
       - in a group: will redirect you to pm, with all that chat's settings.
     Click on the buttons below to get documentation about specific modules!
 
-add_bot_to_group_btn: "Add Kigyo"
-support_chat_link_btn: "Support"
-updates_channel_link_btn: "Updates"
-src_btn: "Source code"
+add_bot_to_group_btn: "Add Licht to your group"
+support_chat_link_btn: "Support Chat // Zero Union"
+updates_channel_link_btn: "Zero Union // Licht Updates"
+src_btn: "Source (Licensed under GPLV3)"
 
 admin_help: |
    • `/admins`*:* list of admins in the chat
@@ -45,28 +46,28 @@ admin_help: |
    • `/title <title here>`*:* sets a custom title for an admin that the bot promoted
 
 afk_help: |
-   - /afk <reason>: mark yourself as AFK(away from keyboard).
-   - brb <reason>: same as the afk command - but not a command.
+   - `/afk <reason>`*:* mark yourself as AFK(away from keyboard).
+   - `brb <reason>`*:* same as the afk command - but not a command.
    When marked as AFK, any mentions will be replied to with a message to say you're not available!
 
 anilist_help: |
     *AniList*
     Get information about anime, manga or characters with the help of this module! All data is fetched from [AniList](anilist.co).
     *Available commands:*
-     - /anime <anime>: returns information about the anime.
-     - /character <character>: returns information about the character.
-     - /manga <manga>: returns information about the manga.
+     - `/anime <anime>`*:* returns information about the anime.
+     - `/character <character>:`** returns information about the character.
+     - `/manga <manga>`*:* returns information about the manga.
 
 antiflood_help: |
     Antiflood allows you to take action on users that send more than x messages in a row. Exceeding the set flood
     will result in restricting that user.
      This will mute users if they send more than 10 messages in a row, bots are ignored.
      • `/flood`*:* Get the current flood control setting
-    • *Admins only:*
+     *Admins only:*
      • `/setflood <int/'no'/'off'>`*:* enables or disables flood control
      *Example:* `/setflood 10`
      • `/setfloodmode <ban/kick/mute/tban/tmute> <value>`*:* Action to perform when user have exceeded flood limit. ban/kick/mute/tmute/tban
-    • *Note:*
+     *Note:*
      • Value must be filled for tban and tmute!!
      It can be:
      `5m` = 5 minutes
@@ -87,21 +88,23 @@ approve_help: |
 
 backup_help: |
     *Admin only:*
-     - /import: reply to a group butler backup file to import as much as possible, making the transfer super simple! Note \
+     - `/import`*:* reply to a group butler backup file to import as much as possible, making the transfer super simple! Note \
        that files/photos can't be imported due to telegram restrictions.
-     - /export: !!! This isn't a command yet, but should be coming soon!
+     - `/export`*:* !!! This isn't a command yet, but should be coming soon!
 
 bans_help: |
     - /kickme: kicks the user who issued the command
 
      *Admin only:*
-    - /ban <userhandle>: bans a user. (via handle, or reply)
-    - /tban <userhandle> x(m/h/d): bans a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
-    - /unban <userhandle>: unbans a user. (via handle, or reply)
-    - /kick <userhandle>: kick a user out of the group, (via handle, or reply)
+    - `/ban <userhandle>`*:* bans a user. (via handle, or reply)
+    - `/tban <userhandle>x(m/h/d)`*:* bans a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
+    - `/unban <userhandle>`*:* unbans a user. (via handle, or reply)
+    - `/kick <userhandle>`*:* kick a user out of the group, (via handle, or reply)
 
 blacklist_help: |
-    Blacklists are used to stop certain triggers from being said in a group. Any time the trigger is mentioned, the message will immediately be deleted. A good combo is sometimes to pair this up with warn filters!
+    - Blacklist Users
+
+    Blacklists Users are used to stop certain triggers from being said in a group. Any time the trigger is mentioned, the message will immediately be deleted. A good combo is sometimes to pair this up with warn filters!
 
     *NOTE*: Blacklists do not affect group admins.
 
@@ -111,18 +114,34 @@ blacklist_help: |
      • `/addblacklist <triggers>`*:* Add a trigger to the blacklist. Each line is considered one trigger, so using different lines will allow you to add multiple triggers.
      • `/unblacklist <triggers>`*:* Remove triggers from the blacklist. Same newline logic applies here, so you can remove multiple triggers at once.
      • `/blacklistmode <off/del/warn/ban/kick/mute/tban/tmute>`*:* Action to perform when someone sends blacklisted words.
-
+     
+    - Blacklist Stickers
+    
+    Blacklist Stickers is used to stop certain stickers. Whenever a sticker is sent, the message will be deleted immediately.
+    
+    *NOTE*: Blacklist do not affect group admins
+     
+     • `/blsticker`*:* See current blacklisted sticker
+     
+    Admin only:
+     • `/addblsticker <sticker link>`*:* Add the sticker trigger to the black list. Can be added via reply sticker
+     • `/unblsticker <sticker link>`*:* Remove triggers from blacklist. The same newline logic applies here, so you can delete multiple triggers at once
+     • `/rmblsticker <sticker link>`*:* Same as above
+     • `/blstickermode <ban/tban/mute/tmute>`*:* sets up a default action on what to do if users use blacklisted stickers
+     Note:
+     • `<sticker link>` can be `https://t.me/addstickers/<sticker>` or just `<sticker>` or reply to the sticker message
+ 
 cleaner_help: |
-    - /cleanbluetext <on/off/yes/no> - clean commands after sending
-    - /ignorecleanbluetext <word> - prevent auto cleaning of the command
-    - /unignorecleanbluetext <word> - remove prevent auto cleaning of the command
-    - /listcleanbluetext - list currently whitelisted commands
+    - `/cleanbluetext <on/off/yes/no>` - clean commands after sending
+    - `/ignorecleanbluetext <word>` - prevent auto cleaning of the command
+    - `/unignorecleanbluetext <word>` - remove prevent auto cleaning of the command
+    - `/listcleanbluetext` - list currently whitelisted commands
 
 connections_help: |
-    - /connect: connect a chat (Can be done in a group by /connect or /connect <chat id> in PM)
-    - /connection: list connected chats
-    - /disconnect: disconnect from a chat
-    - /helpconnect: list available commands that can be done remotely
+    - `/connect`*:* connect a chat (Can be done in a group by /connect or /connect <chat id> in PM)
+    - `/connection`*:* list connected chats
+    - `/disconnect`*:* disconnect from a chat
+    - `/helpconnect`*:* list available commands that can be done remotely
 
      *Admin only:*
     - /allowconnect <yes/no>: allow a user to connect to a chat
@@ -150,12 +169,12 @@ disable_help: |
     This allows you to disable some commonly used commands, so noone can use them.
     It'll also allow you to autodelete them, stopping people from bluetexting.
 
-     • /cmds: Check the current status of disabled commands
+     • `/cmds`*:* Check the current status of disabled commands
 
      *Admin only:*
-     • /enable <cmd name>: Enable that command
-     • /disable <cmd name>: Disable that command
-     • /listcmds: List all possible disablable commands
+     • `/enable <cmd name>`*:* Enable that command
+     • `/disable <cmd name>`*:* Disable that command
+     • `/listcmds`*:* List all possible disablable commands
 
 feds_help: |
     Ah, group management. Everything is fun, until the spammer starts entering your group, and you have to block it. Then you need to start banning more, and more, and it hurts.
@@ -166,39 +185,39 @@ feds_help: |
 
     *Commands Available*:
 
-     • /newfed <fedname>: Create a new Federation with the name given. Users are only allowed to have one Federation. This method can also be used to rename the Federation. (max. 64 characters)
-     • /delfed: Delete your Federation, and any information related to it. Will not cancel blocked users.
-     • /fedinfo <FedID>: Information about the specified Federation.
-     • /joinfed <FedID>: Join the current chat to the Federation. Only chat owners can do this. Every chat can only be in one Federation.
-     • /leavefed <FedID>: Leave the Federation given. Only chat owners can do this.
-     • /fpromote <user>: Promote Users to give fed admin. Fed owner only.
-     • /fdemote <user>: Drops the User from the admin Federation to a normal User. Fed owner only.
-     • /fban <user>: Prohibits users from all federations where this chat takes place, and executors have control over.
-     • /unfban <user>: Cancel User from all federations where this chat takes place, and that the executor has control over.
-     • /setfrules: Arrange Federation rules.
-     • /frules: See Federation regulations.
-     • /chatfed: See the Federation in the current chat.
-     • /fedadmins: Show Federation admin.
-     • /fbanlist: Displays all users who are victimized at the Federation at this time.
-     • /fednotif <on / off>: Federation settings not in PM when there are users who are fban / unfban.
-     • /fedchats: Get all the chats that are connected in the Federation.
-     • /importfbans: Reply to the Federation backup message file to import the banned list to the Federation now. (disabled for now.)
+     • `/newfed <fedname>`*:* Create a new Federation with the name given. Users are only allowed to have one Federation. This method can also be used to rename the Federation. (max. 64 characters)
+     • `/delfed`*:* Delete your Federation, and any information related to it. Will not cancel blocked users.
+     • `/fedinfo <FedID>`*:* Information about the specified Federation.
+     • `/joinfed <FedID>`*:* Join the current chat to the Federation. Only chat owners can do this. Every chat can only be in one Federation.
+     • `/leavefed <FedID>`*:* Leave the Federation given. Only chat owners can do this.
+     • `/fpromote <user>`*:* Promote Users to give fed admin. Fed owner only.
+     • `/fdemote <user>`*:* Drops the User from the admin Federation to a normal User. Fed owner only.
+     • `/fban <user>`*:* Prohibits users from all federations where this chat takes place, and executors have control over.
+     • `/unfban <user>`*:* Cancel User from all federations where this chat takes place, and that the executor has control over.
+     • `/setfrules`*:* Arrange Federation rules.
+     • `/frules`*:* See Federation regulations.
+     • `/chatfed`*:* See the Federation in the current chat.
+     • `/fedadmins`*:* Show Federation admin.
+     • `/fbanlist`*:* Displays all users who are victimized at the Federation at this time.
+     • `/fednotif <on / off>`*:* Federation settings not in PM when there are users who are fban / unfban.
+     • `/fedchats`*:* Get all the chats that are connected in the Federation.
+     • `/importfbans`*:* Reply to the Federation backup message file to import the banned list to the Federation now. (disabled for now.)
 
 fun_help: |
-     • /runs: reply a random string from an array of replies.
-     • /pat: pat a person, cool thing to have for cute ones :3
-     • /slap: slap a user, or get slapped if not a reply.
-     • /shrug : get shrug XD.
-     • /table : get flip/unflip :v.
-     • /decide : Randomly answers yes/no/maybe
-     • /toss : Tosses A coin
-     • /roll : Roll a dice.
-     • /rlg : Join ears,nose,mouth and create an emo ;-;
-     • /shout <keyword>: write anything you want to give loud shout.
-     • /stickerid: reply to a sticker to get its ID.
-     • /getsticker: reply to a sticker to get the raw PNG image.
-     • /steal: reply to a sticker or image to add it to your pack.
-     • /stickers: search stickers in combot sticker finder.
+     • `/runs`*:* reply a random string from an array of replies.
+     • `/pat`*:* pat a person, cool thing to have for cute ones :3
+     • `/slap`*:* slap a user, or get slapped if not a reply.
+     • `/shrug `*:* get shrug XD.
+     • `/table `*:* get flip/unflip :v.
+     • `/decide `*:* Randomly answers yes/no/maybe
+     • `/toss `*:* Tosses A coin
+     • `/roll`*:* Roll a dice.
+     • `/rlg `*:* Join ears,nose,mouth and create an emo ;-;
+     • `/shout <keyword>`*:* write anything you want to give loud shout.
+     • `/stickerid`*:* reply to a sticker to get its ID.
+     • `/getsticker`*:* reply to a sticker to get the raw PNG image.
+     • `/steal`*:*reply a sticker or image to add it to your pack.
+     • `/stickers`*:*search stickers in combot sticker finder.
 
 antispam_help: |
      *Admins only:*
@@ -206,9 +225,9 @@ antispam_help: |
 
      Anti-Spam, used by bot devs to ban spammers across all groups. This helps protect
      you and your groups by removing spam flooders as quickly as possible.
-     *Note:* Users can appeal gbans or report spammers at @YorkTownEagleUnion
+     *Note:* Users can appeal gbans or report spammers at @ZeroBotSupport
 
-     Kigyo also integrates @Spamwatch and @Intellivoid's SpamProtectionBot API to remove Spammers as much as possible from your chatroom!
+     Kaguya also integrates @Spamwatch and @Intellivoid's SpamProtectionBot API to remove Spammers as much as possible from your chatroom!
      *What is SpamWatch?*
      SpamWatch maintains a large constantly updated ban-list of spambots, trolls, bitcoin spammers and unsavoury characters.
      Constantly help banning spammers off from your group automatically So, you wont have to worry about spammers storming your group.
@@ -290,29 +309,29 @@ markdown_help_text: |
       Keep in mind that your message <b>MUST</b> contain some text other than just a button!
 
 misc_help: |
-      • /id: get the current group id. If used by replying to a message, gets that user's id.
-      • /gifid: reply to a gif to me to tell you its file ID.
-      • /info: get information about a user.
-      • /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
-      • /ud <word>: Type the word or expression you want to search use.
-      • /urban <word>: Same as /ud
-      • /paste - Do a paste at `nekobin.com`
-      • /react: Reacts with a random reaction
-      • /weebify <text>: returns a weebified text
-      • /tr (language code) as reply to a long message.
-      • /time <query> : Gives information about a timezone.
-      • /cash : currency converter
+      • `/id`*:* get the current group id. If used by replying to a message, gets that user's id.
+      • `/gifid`*:* reply to a gif to me to tell you its file ID.
+      • `/info`*:* get information about a user.
+      • `/markdownhelp`*:* quick summary of how markdown works in telegram - can only be called in private chats.
+      • `/ud <word>`*:* Type the word or expression you want to search use.
+      • `/urban <word>`*:* Same as /ud
+      • `/paste` - Do a paste at `nekobin.com`
+      • `/react`*:* Reacts with a random reaction
+      • `/weebify <text>`*:* returns a weebified text
+      • `/tr (language code)` as reply to a long message.
+      • `/time <query>`*:* Gives information about a timezone.
+      • `/cash`*:* currency converter
         example syntax: /cash 1 USD INR
-      • /cinfo : get info about a user or a chat (uses @Pyrogram methods)
-      • /getid : get IDs of chat, user and chat message.
-      • /spbinfo : get info about a user from @Intellivoid's SpamProtection API
+      • `/cinfo`*:* get info about a user or a chat (uses @Pyrogram methods)
+      • `/getid`*:* get IDs of chat, user and chat message.
+      • `/spbinfo`*:* get info about a user from @Intellivoid's SpamProtection API
       ───────────────────────────────
       *Last.FM*
       Share what you're what listening to with the help of this module!
       *Available commands:*
-      • /setuser <username>: sets your last.fm username.
-      • /clearuser: removes your last.fm username from the bot's database.
-      • /lastfm: returns what you're scrobbling on last.fm.
+      • `/setuser <username>`*:* sets your last.fm username.
+      • `/clearuser`*:* removes your last.fm username from the bot's database.
+      • `/lastfm`*:* returns what you're scrobbling on last.fm.
 
 muting_help: |
       *Admins only:*
@@ -339,9 +358,9 @@ notes_help: |
 
 purge_help: |
        *Admin only:*
-        • /del: deletes the message you replied to
-        • /purge: deletes all messages between this and the replied to message.
-        • /purge <integer X>: deletes the replied message, and X messages following it if replied to a message.
+        • `/del`*:* deletes the message you replied to
+        • `/purge`*:* deletes all messages between this and the replied to message.
+        • `/purge <integer X>`*:* deletes the replied message, and X messages following it if replied to a message.
 
 reports_help: |
         • `/report <reason>`*:* reply to a message to report it to admins.
@@ -360,10 +379,10 @@ rules_help: |
       • `/clearrules`*:* clear the rules for this chat.
 
 userinfo_help: |
-      - /setbio <text>: while replying, will save another user's bio
-      - /bio: will get your or another user's bio. This cannot be set by yourself.
-      - /setme <text>: will set your info
-      - /me: will get your or another user's info
+      - `/setbio <text>`*:* while replying, will save another user's bio
+      - `/bio`*:* will get your or another user's bio. This cannot be set by yourself.
+      - `/setme <text>`*:* will set your info
+      - `/me`*:* will get your or another user's info
 
 warns_help: |
       • `/warns <userhandle>`*:* get a user's number, and reason, of warns.
@@ -398,13 +417,13 @@ greetings_help: |
        • `/welcomehelp`*:* view more formatting information for custom welcome/goodbye messages.
 
 nation_help: |
-      - /eagle - Lists all Eagle Union members.
-      - /royals - Lists all Royal Nations.
-      - /sakuras - Lists all Sakura Nations.
-      - /sardegnas - Lists all Sardegnas Nations.
-      - /neptunians - Lists all Neptunia Nations.
+      - `/sensei` - Lists all Zero Union members.
+      - `/sensei` - Lists all Sensei Level.
+      - `/sakuras` - Lists all Sakura Level.
+      - `/sardegnas` - Lists all Sardegnas Level.
+      - `/neptunians` - Lists all Neptunia Level.
       Note: These commands list users with special bot priveleges and can only be used by them.
-      You can visit @YorktownEagleUnion to query more about these.
+      You can visit @ZeroBotSupport to query more about these.
 
 nlp_help: |
 
