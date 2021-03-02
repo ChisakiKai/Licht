@@ -384,7 +384,9 @@ def selfunban(context: CallbackContext, update: Update) -> str:
 
     return log
 
+
 from tg_bot.modules.language import gs
+
 
 def get_help(chat):
     return gs(chat, "bans_help")

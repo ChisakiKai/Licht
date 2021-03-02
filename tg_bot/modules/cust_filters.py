@@ -365,9 +365,7 @@ def reply_filter(update, context):
                                     get_exception(excp, filt, chat),
                                 )
                             except BadRequest as excp:
-                                log.exception(
-                                    "Failed to send message: " + excp.message
-                                )
+                                log.exception("Failed to send message: " + excp.message)
                                 pass
                 else:
                     if ENUM_FUNC_MAP[filt.file_type] == dispatcher.bot.send_sticker:
@@ -574,10 +572,13 @@ def __chat_settings__(chat_id, user_id):
     cust_filters = sql.get_chat_triggers(chat_id)
     return "There are `{}` custom filters here.".format(len(cust_filters))
 
+
 from tg_bot.modules.language import gs
+
 
 def get_help(chat):
     return gs(chat, "cust_filters_help")
+
 
 __mod_name__ = "Filters"
 
