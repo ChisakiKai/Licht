@@ -10,10 +10,7 @@ from tg_bot.modules.helper_funcs.chat_status import user_admin, user_admin_no_re
 from tg_bot.langs import get_string, get_languages, get_language
 
 
-
-def paginate(
-    iterable: Iterable, page_size: int
-) -> Generator[List, None, None]:
+def paginate(iterable: Iterable, page_size: int) -> Generator[List, None, None]:
     while True:
         i1, i2 = itertools.tee(iterable)
         iterable, page = (
