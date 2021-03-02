@@ -360,8 +360,10 @@ def manga(update: Update, context: CallbackContext):
 
 from tg_bot.modules.language import gs
 
+
 def get_help(chat):
     return gs(chat, "anilist_help")
+
 
 __mod_name__ = "AniList"
 

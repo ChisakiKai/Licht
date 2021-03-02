@@ -285,7 +285,9 @@ def ram(update: Update, _):
 
 def markdown_help(update: Update, _):
     chat = update.effective_chat
-    update.effective_message.reply_text((gs(chat.id, "markdown_help_text")), parse_mode=ParseMode.HTML)
+    update.effective_message.reply_text(
+        (gs(chat.id, "markdown_help_text")), parse_mode=ParseMode.HTML
+    )
     update.effective_message.reply_text(
         "Try forwarding the following message to me, and you'll see!"
     )
@@ -318,24 +320,27 @@ def stats(update, context):
     status += "*Library version:* " + str(__version__) + "\n"
     try:
         update.effective_message.reply_text(
-
-            f"*Licht (@{context.bot.username}), *\n" +
-            "Maintained by [ZERO](t.me/Anomaliii)\n" +
-            "Built with ❤️ using python-telegram-bot\n\n" + status +
-            "\n*Bot statistics*:\n"
-            + "\n".join([mod.__stats__() for mod in STATS]) +
-            "\n\n*SRC*: [GitHub](https://github.com/ChisakiKai/Licht)",
-        parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
+            f"*Licht (@{context.bot.username}), *\n"
+            + "Maintained by [ZERO](t.me/Anomaliii)\n"
+            + "Built with ❤️ using python-telegram-bot\n\n"
+            + status
+            + "\n*Bot statistics*:\n"
+            + "\n".join([mod.__stats__() for mod in STATS])
+            + "\n\n*SRC*: [GitHub](https://github.com/ChisakiKai/Licht)",
+            parse_mode=ParseMode.MARKDOWN,
+            disable_web_page_preview=True,
+        )
     except BaseException:
         update.effective_message.reply_text(
-
-            f"*Licht (@{context.bot.username}), *\n" +
-            "built by [ZERO](t.me/Anomaliii)\n" +
-            "Built with ❤️ using python-telegram-bot\n" +
-            "\n*Bot statistics*:\n"
-            + "\n".join([mod.__stats__() for mod in STATS]) +
-            "\n\n*SRC*: [GitHub](https://github.com/ChisakiKai/Licht)",
-        parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
+            f"*Licht (@{context.bot.username}), *\n"
+            + "built by [ZERO](t.me/Anomaliii)\n"
+            + "Built with ❤️ using python-telegram-bot\n"
+            + "\n*Bot statistics*:\n"
+            + "\n".join([mod.__stats__() for mod in STATS])
+            + "\n\n*SRC*: [GitHub](https://github.com/ChisakiKai/Licht)",
+            parse_mode=ParseMode.MARKDOWN,
+            disable_web_page_preview=True,
+        )
 
 
 def ping(update: Update, _):
@@ -351,7 +356,6 @@ def ping(update: Update, _):
 
 def get_help(chat):
     return gs(chat, "misc_help")
-
 
 
 ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True, run_async=True)
