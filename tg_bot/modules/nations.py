@@ -37,16 +37,16 @@ def check_user_id(user_id: int, context: CallbackContext) -> Optional[str]:
 
 
 # I added extra new lines
-nations = """ Kigyō has bot access levels we call as *"Nation Levels"*
+nations = """ Licht has bot access levels we call as *"Nation Levels"*
 \n*Eagle Union* - Devs who can access the bots server and can execute, edit, modify bot code. Can also manage other Nations
 \n*God* - Only one exists, bot owner.
-Owner has complete bot access, including bot adminship in chats Kigyō is at.
-\n*Royals* - Have super user access, can gban, manage Nations lower than them and are admins in Kigyō.
-\n*Sakuras* - Have access go globally ban users across Kigyō.
+Owner has complete bot access, including bot adminship in chats Licht is at.
+\n*Royals* - Have super user access, can gban, manage Nations lower than them and are admins in Licht.
+\n*Sakuras* - Have access go globally ban users across Licht.
 \n*Sardegnas* - Same as Neptunians but can unban themselves if banned.
 \n*Neptunians* - Cannot be banned, muted flood kicked but can be manually banned by admins.
-\n*Disclaimer*: The Nation levels in Kigyō are there for troubleshooting, support, banning potential scammers.
-Report abuse or ask us more on these at [Eagle Union](https://t.me/YorktownEagleUnion).
+\n*Disclaimer*: The Nation levels in Licht are there for troubleshooting, support, banning potential scammers.
+Report abuse or ask us more on these at [Zero Union](https://t.me/ZeroBotSupport).
 """
 
 

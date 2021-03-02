@@ -48,7 +48,7 @@ async def evaluate(client, message):
     elif stdout:
         evaluation = stdout
     else:
-        evaluation = "Success"
+        evaluation = "Successfully"
     final_output = f"<b>OUTPUT</b>:\n<code>{evaluation.strip()}</code>"
     if len(final_output) > 4096:
         filename = 'output.txt'
