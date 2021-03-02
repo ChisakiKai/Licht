@@ -67,7 +67,7 @@ def check_flood(update, context) -> str:
     ):
         sql.update_flood(chat.id, None)
         return ""
-    # ignore approved users
+      # ignore approved users
     if is_approved(chat.id, user.id):
         sql.update_flood(chat.id, None)
         return
@@ -419,13 +419,10 @@ def __chat_settings__(chat_id, user_id):
     else:
         return "Antiflood has been set to`{}`.".format(limit)
 
-
 from tg_bot.modules.language import gs
-
 
 def get_help(chat):
     return gs(chat, "antiflood_help")
-
 
 __mod_name__ = "Anti-Flood"
 

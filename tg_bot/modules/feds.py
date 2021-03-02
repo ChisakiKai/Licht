@@ -2320,10 +2320,8 @@ __mod_name__ = "Federations"
 
 from tg_bot.modules.language import gs
 
-
 def get_help(chat):
     return gs(chat, "feds_help")
-
 
 NEW_FED_HANDLER = CommandHandler("newfed", new_fed)
 DEL_FED_HANDLER = CommandHandler("delfed", del_fed, pass_args=True)
