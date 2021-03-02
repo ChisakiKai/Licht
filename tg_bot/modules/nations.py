@@ -131,8 +131,10 @@ def devlist(update: Update, context: CallbackContext):
 
 from tg_bot.modules.language import gs
 
+
 def get_help(chat):
     return gs(chat, "nation_help")
+
 
 WHITELISTLIST_HANDLER = CommandHandler(
     ["whitelistlist", "neptunians"], whitelistlist, run_async=True

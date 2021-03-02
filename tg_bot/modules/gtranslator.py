@@ -49,6 +49,7 @@ if __name__ == "__translate__":
 
 from tg_bot.modules.language import gs
 
+
 def get_help(chat):
     return gs(chat, "gtranslate_help")
 
