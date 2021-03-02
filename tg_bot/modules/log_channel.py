@@ -6,10 +6,8 @@ from telegram.ext import CallbackContext
 from tg_bot.modules.helper_funcs.misc import is_module_loaded
 from tg_bot.modules.language import gs
 
-
 def get_help(chat):
     return gs(chat, "log_help")
-
 
 FILENAME = __name__.rsplit(".", 1)[-1]
 

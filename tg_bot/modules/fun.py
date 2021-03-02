@@ -159,9 +159,7 @@ def table(update: Update, context: CallbackContext):
     )
     reply_text(random.choice(fun_strings.TABLE))
 
-
 from tg_bot.modules.language import gs
-
 
 def get_help(chat):
     return gs(chat, "fun_help")

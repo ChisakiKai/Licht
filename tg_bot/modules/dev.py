@@ -42,7 +42,6 @@ def gitpull(update: Update, context: CallbackContext):
     os.system("restart.bat")
     os.execv("start.bat", sys.argv)
 
-
 @dev_plus
 def restart(update: Update, context: CallbackContext):
     update.effective_message.reply_text(

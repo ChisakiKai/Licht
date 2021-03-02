@@ -393,10 +393,8 @@ async def admins(client, message):
     reply = await message.reply_text(text_unping, disable_web_page_preview=True)
     await reply.edit_text(text_ping, disable_web_page_preview=True)
 
-
 def get_help(chat):
     return gs(chat, "admin_help")
-
 
 PIN_HANDLER = CommandHandler(
     "pin", pin, filters=Filters.chat_type.groups, run_async=True
