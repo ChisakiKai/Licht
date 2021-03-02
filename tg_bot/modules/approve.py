@@ -49,8 +49,7 @@ def approve(update, context):
         f"<b>{html.escape(chat.title)}:</b>\n"
         f"#APPROVED\n"
         f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
-        f"<b>User:</b> {mention_html(member.user.id, member.user.first_name)}"
-    )
+        f"<b>User:</b> {mention_html(member.user.id, member.user.first_name)}")
 
     return log_message
 
@@ -81,14 +80,12 @@ def disapprove(update, context):
         return ""
     sql.disapprove(message.chat_id, user_id)
     message.reply_text(
-        f"{member.user['first_name']} is no longer approved in {chat_title}."
-    )
+        f"{member.user['first_name']} is no longer approved in {chat_title}.")
     log_message = (
         f"<b>{html.escape(chat.title)}:</b>\n"
         f"#UNAPPROVED\n"
         f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
-        f"<b>User:</b> {mention_html(member.user.id, member.user.first_name)}"
-    )
+        f"<b>User:</b> {mention_html(member.user.id, member.user.first_name)}")
 
     return log_message
 
@@ -132,29 +129,26 @@ def approval(update, context):
         )
 
 
+
 def unapproveall(update: Update, context: CallbackContext):
     chat = update.effective_chat
     user = update.effective_user
     member = chat.get_member(user.id)
     if member.status != "creator" and user.id not in SUDO_USERS:
         update.effective_message.reply_text(
-            "Only the chat owner can unapprove all users at once."
-        )
+            "Only the chat owner can unapprove all users at once.")
     else:
-        buttons = InlineKeyboardMarkup(
+        buttons = InlineKeyboardMarkup([
             [
-                [
-                    InlineKeyboardButton(
-                        text="Unapprove all users", callback_data="unapproveall_user"
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        text="Cancel", callback_data="unapproveall_cancel"
-                    )
-                ],
-            ]
-        )
+                InlineKeyboardButton(
+                    text="Unapprove all users",
+                    callback_data="unapproveall_user")
+            ],
+            [
+                InlineKeyboardButton(
+                    text="Cancel", callback_data="unapproveall_cancel")
+            ],
+        ])
         update.effective_message.reply_text(
             f"Are you sure you would like to unapprove ALL users in {chat.title}? This action cannot be undone.",
             reply_markup=buttons,
@@ -183,37 +177,26 @@ def unapproveall_btn(update: Update, context: CallbackContext):
             query.answer("You need to be admin to do this.")
     elif query.data == "unapproveall_cancel":
         if member.status == "creator" or query.from_user.id in SUDO_USERS:
-            message.edit_text("Removing of all approved users has been cancelled.")
+            message.edit_text(
+                "Removing of all approved users has been cancelled.")
             return ""
         if member.status == "administrator":
             query.answer("Only owner of the chat can do this.")
         if member.status == "member":
             query.answer("You need to be admin to do this.")
 
-
 from tg_bot.modules.language import gs
-
 
 def get_help(chat):
     return gs(chat, "approve_help")
 
-
-APPROVE = DisableAbleCommandHandler(
-    "approve", approve, run_async=True, filters=Filters.chat_type.groups
-)
-DISAPPROVE = DisableAbleCommandHandler(
-    "unapprove", disapprove, run_async=True, filters=Filters.chat_type.groups
-)
-APPROVED = DisableAbleCommandHandler(
-    "approved", approved, run_async=True, filters=Filters.chat_type.groups
-)
-APPROVAL = DisableAbleCommandHandler(
-    "approval", approval, run_async=True, filters=Filters.chat_type.groups
-)
-UNAPPROVEALL = DisableAbleCommandHandler(
-    "unapproveall", unapproveall, run_async=True, filters=Filters.chat_type.groups
-)
-UNAPPROVEALL_BTN = CallbackQueryHandler(unapproveall_btn, pattern=r"unapproveall_.*")
+APPROVE = DisableAbleCommandHandler("approve", approve, run_async=True, filters=Filters.chat_type.groups)
+DISAPPROVE = DisableAbleCommandHandler("unapprove", disapprove, run_async=True, filters=Filters.chat_type.groups)
+APPROVED = DisableAbleCommandHandler("approved", approved, run_async=True, filters=Filters.chat_type.groups)
+APPROVAL = DisableAbleCommandHandler("approval", approval, run_async=True, filters=Filters.chat_type.groups)
+UNAPPROVEALL = DisableAbleCommandHandler("unapproveall", unapproveall, run_async=True, filters=Filters.chat_type.groups)
+UNAPPROVEALL_BTN = CallbackQueryHandler(
+    unapproveall_btn, pattern=r"unapproveall_.*")
 
 dispatcher.add_handler(APPROVE)
 dispatcher.add_handler(DISAPPROVE)
