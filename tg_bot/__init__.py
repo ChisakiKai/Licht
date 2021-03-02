@@ -18,10 +18,10 @@ logging.basicConfig(handlers=[RichHandler()], level=logging.INFO, format=FORMAT,
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 log = logging.getLogger("rich")
 
-log.info("Kigyo is starting. | An Eagle Union Project. | Licensed under GPLv3.")
+log.info("Licht is starting. | An Zero Union Project. | Licensed under GPLv3.")
 
 log.info("Not affiliated to Azur Lane or Yostar in any way whatsoever.")
-log.info("Project maintained by: github.com/Dank-del (t.me/dank_as_fuck)")
+log.info("Project maintained by: github.com/ChisakiKai (t.me/Anomaliii)")
 
 # if version < 3.6, stop bot.
 if sys.version_info[0] < 3 or sys.version_info[1] < 6:

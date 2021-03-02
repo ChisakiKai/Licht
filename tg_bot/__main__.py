@@ -1,9 +1,3 @@
-'''#TODO
-
-Dank-del
-2020-12-29
-'''
-
 import importlib
 import re
 import json
@@ -56,7 +50,7 @@ You can find the list of available commands with /help.
 """
 
 HELP_STRINGS = f"""
-Hello there! My name is *{dispatcher.bot.first_name}*. A part of *Eagle Union*.
+Hello there! My name is *{dispatcher.bot.first_name}*. A part of *Zero Union*.
 I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of \
 the things I can help you with.
 *Main* commands available:
@@ -68,7 +62,7 @@ the things I can help you with.
  \nClick on the buttons below to get documentation about specific modules!"""
 
 
-KIGYO_IMG = "https://telegra.ph/file/e5100e06c03767af80023.jpg"
+LICHT_IMG = "https://telegra.ph/file/6c990b23254a5f04dba4d.jpg"
 
 
 IMPORTED = {}
@@ -180,7 +174,7 @@ def start(update: Update, context: CallbackContext):
         else:
             first_name = update.effective_user.first_name
             update.effective_message.reply_photo(
-                photo=KIGYO_IMG,
+                photo=LICHT_IMG,
                 caption=gs(chat.id, "pm_start_text").format(
                     escape_markdown(first_name),
                     escape_markdown(context.bot.first_name),
@@ -200,7 +194,7 @@ def start(update: Update, context: CallbackContext):
                         [
                             InlineKeyboardButton(
                                 text=gs(chat.id, "support_chat_link_btn"),
-                                url=f"https://t.me/YorktownEagleUnion",
+                                url=f"https://t.me/ZeroBotSupport",
                             ),
                             InlineKeyboardButton(
                                 text=gs(chat.id, "updates_channel_link_btn"),
@@ -210,7 +204,7 @@ def start(update: Update, context: CallbackContext):
                         [
                             InlineKeyboardButton(
                                 text=gs(chat.id, "src_btn"),
-                                url="https://github.com/Dank-del/EnterpriseALRobot",
+                                url="https://github.com/ChisakiKai/Licht",
                             )
                         ],
                     ]
