@@ -1,0 +1,431 @@
+# Language name in their native
+language: "Indonesia 🇮🇩"
+# name of people(s) who worked on this translation
+authors: "@Anomaliii" 
+
+# languages
+curr_chat_lang: "Hey. Your current language is {}, select the one you want from the buttons below :)"
+set_chat_lang: "Bagus, {} mulai sekarang!"
+
+
+pm_start_text: |
+   Halo {}, Perkenalkan nama saya {}!
+   Saya bot manajemen grup bertema Anime dengan beberapa tambahan yang menyenangkan [;)](https://telegra.ph/file/7437d2bf49d368994e787.jpg)
+
+   Anda dapat menemukan daftar perintah yang tersedia dengan /help.
+grp_start_text: "Hi, Saya Licht."
+
+pm_help_text: |
+   Halo! Saya *Licht*. Bagian dari *Zero Union*.
+   Saya bot manajemen grup bertema anime dengan beberapa tambahan yang menyenangkan! Lihatlah yang berikut ini untuk mendapatkan gambaran tentang beberapa hal-hal yang dapat saya bantu.
+   *Perintah* utama yang tersedia:
+    • /start: Mulai saya, untuk memastikan saya on atau tidak.
+    • /help: PM anda pesan ke pesan ini.
+    • /language: Ganti bahasa pada bot.
+    • /settings:
+      - in PM: akan mengirimkan setelan Anda untuk semua modul yang didukung.
+      - in a group: akan mengarahkan Anda ke pm, dengan semua pengaturan obrolan itu.   
+    Klik tombol di bawah untuk mendapatkan dokumentasi tentang modul tertentu!    
+   
+add_bot_to_group_btn: "Tambahkan saya ke group"
+support_chat_link_btn: "Support Chat // Zero Union"
+updates_channel_link_btn: "Zero Union // Licht Updates"
+src_btn: "Sumber (Dibawah Lisensi GPLV3)"
+
+admin_help: |
+   • `/admins`*:* daftar para admin di grup
+
+   *Khusus Admin:*
+   • `/pin`*:* dengan diam menyematkan pesan yang dibalas - tambahkan `'loud'` atau`' notify'` untuk memberikan pemberitahuan kepada pengguna.
+   • `/unpin`*:* melepas pesan yang saat ini disematkan
+   • `/invitelink`*:* mendapatkan tautan undangan
+   • `/promote`*:* mempromosikan pengguna reply pesannya 
+   • `/demote`*:* menurunkan pengguna reply pesannya
+   • `/title <title here>`*:* menetapkan judul khusus untuk admin yang dipromosikan bot
+
+afk_help: |
+   - `/afk <alasan>`*:* tandai diri Anda sebagai AFK.
+   - `brb <alasan>`*:* sama dengan AFK - tapi bukan sebuah perintah.
+   Saat ditandai sebagai AFK, setiap sebutan akan dibalas dengan pesan yang mengatakan Anda tidak tersedia!
+
+anilist_help: |
+    *AniList*
+    Dapatkan informasi tentang anime, manga, atau karakter dengan bantuan modul ini! Semua data diambil dari [AniList] (anilist.co).
+    *Perintah yang Tersedia:*
+     - `/anime <anime> `*:* memberikan informasi tentang anime.
+     - `/character <character>:` ** memberikan informasi tentang karakter.
+     - `/manga <manga>` *:* memberikan informasi tentang manga.
+
+antiflood_help: |
+    Antiflood memungkinkan Anda mengambil tindakan terhadap pengguna yang mengirim lebih dari x pesan secara berurutan. Melebihi flood set
+    akan mengakibatkan pembatasan pengguna itu.
+     Ini akan membisukan pengguna jika mereka mengirim lebih dari 10 pesan berturut-turut, bot diabaikan.
+     • `/flood` *: * Dapatkan pengaturan flood saat ini
+     * Hanya Admin: *
+     • `/ setflood <int / 'no' / 'off'>` *: * mengaktifkan atau menonaktifkan kontrol flood
+     * Contoh: * `/ setflood 10`
+     • `/ setfloodmode <ban/kick/mute /tban/tmute> <value>` *: * Tindakan yang akan dilakukan ketika pengguna telah melebihi batas flood. ban/kick/mute/tmute/tban
+     *Catatan:*
+     • Nilai harus diisi untuk tban and tmute !!
+     Bisa jadi:
+     `5m` = 5 menit
+     `6h` = 6 jam
+     `3d` = 3 hari
+     `1w` = 1 minggu
+
+approve_help: |
+     Terkadang, Anda mungkin mempercayai pengguna untuk tidak mengirim konten yang tidak diinginkan. 
+     Mungkin tidak cukup untuk menjadikannya admin, tetapi Anda mungkin baik-baik saja dengan kunci, daftar hitam, dan antiflood yang tidak berlaku untuk mereka. 
+     Untuk itulah persetujuan - menyetujui pengguna yang dapat dipercaya untuk mengizinkan mereka mengirim
+     *Perintah admin:*
+     • `/approval`*:* Periksa status persetujuan pengguna dalam obrolan saat ini.
+     • `/approve`*:* Setujui pengguna. Kunci, daftar hitam, dan antiflood tidak akan berlaku lagi.
+     • `/unapprove`*:* Tidak menyetujui pengguna. Mereka sekarang akan terkena kunci, daftar hitam, dan antiflood lagi.
+     • `/approved`*:* Daftar semua pengguna yang disetujui.
+     • `/unapproveall`*:* Batalkan persetujuan *SEMUA* pengguna dalam obrolan. Ini tidak dapat dibatalkan.
+
+backup_help: |
+    *Khusus Admin:*
+     - `/import`*:* balas file cadangan butler grup untuk mengimpor sebanyak mungkin, membuat transfer menjadi sangat mudah! Catatan \ 
+     bahwa file / foto tidak dapat diimpor karena batasan telegram.
+     - `/export`*:* !!! Ini belum menjadi perintah, tetapi akan segera hadir!
+
+bans_help: |
+    - `/kickme`*:* menendang pengguna yang mengeluarkan perintah tersebut.
+
+     *Khusus Admin:*
+    - `/ban <userhandle>`*:* melarang pengguna. (melalui pegangan, atau balasan)
+    - `/tban <userhandle>x(m/h/d)`*:* melarang pengguna selama x waktu. (melalui pegangan, atau balasan). m = menit, h = jam, d = hari.
+    - `/unban <userhandle>`*:* batalkan larangan pengguna. (melalui pegangan, atau balasan)
+    - `/kick <userhandle>`*:* menendang pengguna keluar dari grup, (melalui pegangan, atau balasan)
+
+blacklist_help: |
+    - Daftar Hitam Pengguna
+
+    Daftar Hitam Pengguna digunakan untuk menghentikan pemicu tertentu agar tidak diucapkan dalam grup. Setiap kali pemicu disebutkan, pesan akan segera dihapus. Kombo yang bagus terkadang memasangkan ini dengan filter peringatan!
+
+    *CATATAN*: Daftar hitam tidak memengaruhi admin grup.
+
+     • `/blacklist`*:* Lihat kata-kata dalam daftar hitam saat ini.
+
+    Khusus Admin:
+     • `/addblacklist <triggers>`*:* Tambahkan pemicu ke daftar hitam. Setiap baris dianggap sebagai satu pemicu, jadi menggunakan baris yang berbeda akan memungkinkan Anda menambahkan beberapa pemicu.
+     • `/unblacklist <triggers>`*:* Hapus pemicu dari daftar hitam. Logika baris baru yang sama berlaku di sini, jadi Anda bisa menghapus beberapa pemicu sekaligus.
+     • `/blacklistmode <off/del/warn/ban/kick/mute/tban/tmute>`*:* Tindakan yang harus dilakukan ketika seseorang mengirimkan kata-kata yang masuk daftar hitam.
+     
+    - Daftar Hitam Stickers
+    
+    Stiker Blacklist digunakan untuk menghentikan stiker tertentu. Setiap kali stiker dikirim, pesan tersebut akan segera dihapus.
+
+    *CATATAN*: Daftar hitam tidak memengaruhi admin grup.
+     
+     • `/blsticker`*:* Lihat stiker daftar hitam saat ini
+     
+    Khusus Admin:
+     • `/addblsticker <sticker link>`*:* Tambahkan pemicu stiker ke daftar hitam. Dapat ditambahkan dengan membalas stiker tersebut.
+     • `/unblsticker <sticker link>`*:* Hapus pemicu dari daftar hitam. Logika baris baru yang sama berlaku di sini, jadi Anda bisa menghapus beberapa pemicu sekaligus.
+     • `/rmblsticker <sticker link>`*:* Sama seperti di atas.
+     • `/blstickermode <ban/tban/mute/tmute>`*:* Menyiapkan tindakan apa yang harus dilakukan jika pengguna menggunakan stiker daftar hitam.
+     Catatan:
+     • `<sticker link>` bisa dengan `https://t.me/addstickers/<sticker>` atau hanya `<sticker>` atau balas pesan stiker tersebut.
+ 
+cleaner_help: |
+    - `/cleanbluetext <on/off/yes/no>` - membersihkan perintah setelah mengirim
+    - `/ignorecleanbluetext <word>` - mencegah pembersihan otomatis perintah
+    - `/unignorecleanbluetext <word>` - hapus mencegah pembersihan otomatis dari perintah
+    - `/listcleanbluetext` - daftar perintah yang saat ini masuk daftar putih
+
+connections_help: |
+    - `/connect`*:* hubungkan obrolan (Dapat dilakukan dalam grup dengan /connect atau /connect <chat id> di PM)
+    - `/connection`*:* daftar obrolan yang terhubung
+    - `/disconnect`*:* putuskan dari obrolan
+    - `/helpconnect`*:* daftar perintah yang tersedia yang dapat dilakukan dari jarak jauh
+
+     *Khusus Admin:*
+    - /allowconnect <yes/no>: izinkan pengguna untuk terhubung ke obrolan
+
+cust_filters_help: |
+    • `/filters`*:* Mencantumkan semua filter aktif yang disimpan dalam obrolan.
+
+     *Khusus Admin:*
+    • `/filter <keyword> <reply message>`*:* Tambahkan filter ke obrolan ini. Bot sekarang akan membalas pesan itu setiap kali 'keyword'
+      disebutkan. Jika Anda membalas stiker dengan kata kunci, bot akan membalas dengan stiker itu. CATATAN: semua filter
+      kata kunci menggunakan huruf kecil. Jika Anda ingin kata kunci Anda menjadi kalimat, gunakan tanda kutip. misal: / filter "hai yang disana" Bagaimana kabarmu?
+    • `/stop <filter keyword>`*:* Hentikan filter tersebut.
+
+     *Pembuat obrolan saja:*
+    • `/removeallfilters`*:* Hapus semua filter obrolan sekaligus.
+
+      *Catatan*: Filter juga mendukung format penurunan harga seperti: {first}, {last} dll.. dan tombol.
+        Lihat `/ markdownhelp` untuk mengetahui lebih banyak!
+
+disable_help: |
+    Tidak semua orang menginginkan setiap fitur yang ditawarkan bot.Beberapa perintah adalah yang terbaik 
+    dibiarkan tidak digunakan; untuk menghindari spam dan penyalahgunaan.
+
+    Ini memungkinkan Anda untuk menonaktifkan beberapa perintah yang umum digunakan, jadi tidak ada yang bisa menggunakannya.
+    Ini juga akan memungkinkan Anda untuk menghapusnya secara otomatis, menghentikan orang dari bluetexting.
+    
+     • `/cmds`*:* Periksa status saat ini dari perintah yang dinonaktifkan
+
+     *Khusus Admin:*
+     • `/enable <cmd name>`*:* Aktifkan perintah itu
+     • `/disable <cmd name>`*:* Nonaktifkan perintah itu
+     • `/listcmds`*:* Daftar semua kemungkinan perintah yang dapat dinonaktifkan
+
+feds_help: |
+    Ah, manajemen grup. Semuanya menyenangkan, sampai pelaku spam mulai memasuki grup Anda, dan Anda harus memblokirnya. Maka Anda perlu mulai melarang lebih banyak, dan lebih banyak lagi, dan itu menyakitkan. 
+    Tetapi kemudian Anda memiliki banyak grup, dan Anda tidak ingin pelaku spam ini berada di salah satu grup Anda - bagaimana Anda bisa menangani? Apakah Anda harus memblokirnya secara manual, di semua grup Anda?
+     
+    Tidak lagi! Dengan Federasi, Anda dapat membuat larangan dalam satu obrolan tumpang tindih dengan semua obrolan lainnya.
+    Anda bahkan dapat menetapkan federasi admin, sehingga admin tepercaya Anda dapat memblokir semua obrolan yang ingin Anda lindungi.
+ 
+    *Perintah Tersedia*:
+
+     • `/newfed <fedname>`*:* Buat Federasi baru dengan nama yang diberikan. Pengguna hanya diperbolehkan memiliki satu Federasi. Cara ini juga dapat digunakan untuk mengganti nama Federasi. (maks. 64 karakter)
+     • `/delfed`*:* Hapus Federasi Anda, dan informasi apa pun yang terkait dengannya. Tidak akan membatalkan pengguna yang diblokir.
+     • `/fedinfo <FedID>`*:* Informasi tentang Federasi yang ditentukan.
+     • `/joinfed <FedID>`*:* Bergabunglah dengan obrolan saat ini ke Federasi. Hanya pemilik obrolan yang dapat melakukan ini. Setiap obrolan hanya boleh di satu Federasi.
+     • `/leavefed <FedID>`*:* Biarkan Federasi diberikan. Hanya pemilik obrolan yang dapat melakukan ini.
+     • `/fpromote <user>`*:* Promosikan Pengguna untuk menjadi admin federasi. Hanya pemilik federasi yang dapat mempromosikan.
+     • `/fdemote <user>`*:* Menurunkan Pengguna dari Federasi admin ke Pengguna biasa. Hanya pemilik yang dapat menurunkan.
+     • `/fban <user>`*:* Melarang pengguna dari semua federasi tempat obrolan ini berlangsung, dan pelaksana memiliki kendali atas.
+     • `/unfban <user>`*:* Batalkan Pengguna dari semua federasi tempat obrolan ini berlangsung, dan yang dikontrol oleh pelaksana.
+     • `/setfrules`*:* mengatur aturan untuk federasi.
+     • `/frules`*:* Lihat peraturan Federasi.
+     • `/chatfed`*:* Lihat Federasi di obrolan saat ini.
+     • `/fedadmins`*:* Tampilkan admin Federasi.
+     • `/fbanlist`*:* Menampilkan semua pengguna yang menjadi korban di Federasi saat ini.
+     • `/fednotif <on / off>`*:* Setting federasi tidak di PM saat ada pengguna yang di fban/ unfban.
+     • `/fedchats`*:* Dapatkan semua obrolan yang terhubung di Federasi.
+     • `/importfbans`*:* Balas file pesan cadangan Federasi untuk mengimpor daftar terlarang ke Federasi sekarang. (dinonaktifkan untuk saat ini.)
+
+fun_help: |
+     • `/runs`*:* balas string acak dari serangkaian balasan.
+     • `/pat`*:* tepuk seseorang, hal keren untuk dimiliki untuk yang imut :3
+     • `/slap`*:* menampar pengguna, atau ditampar jika bukan balasan.
+     • `/shrug `*:* mengangkat bahu XD.
+     • `/table `*:* dapat flip/unflip :v.
+     • `/decide `*:* Secara acak menjawab yes/no/maybe
+     • `/toss `*:* Mengeluarkan koin
+     • `/roll`*:* Lempar dadu.
+     • `/rlg `*:* Bergabunglah dengan telinga, hidung, mulut, dan buat emo ;-;
+     • `/shout <keyword>`*:* tulis apa pun yang ingin Anda teriakkan.
+     • `/stickerid`*:* balas stiker untuk mendapatkan ID-nya.
+     • `/getsticker`*:* balas stiker untuk mendapatkan gambar PNG mentahan.
+     • `/steal`*:* balas stiker atau gambar untuk menambahkannya ke paket Anda.
+     • `/stickers`*:* cari stiker di pencari stiker combot.
+
+antispam_help: |
+     *Khusus Admin:*
+      • `/antispam <on/off/yes/no>`*:* Akan mengubah teknologi antispam kami atau mengembalikan pengaturan Anda saat ini.
+
+     Anti-Spam, digunakan oleh pengembang bot untuk melarang pelaku spam di semua grup. Ini membantu melindungi 
+     Anda dan grup Anda dengan menghapus pembanjir spam secepat mungkin. 
+     * Catatan: * Pengguna dapat mengajukan banding gbans atau melaporkan spammer di @ZeroBotSupport
+
+     Kaguya juga mengintegrasikan @Spamwatch dan @Intellivoid's SpamProtectionBot API untuk menghapus Spammer sebanyak mungkin dari ruang obrolan Anda!
+     *Apa itu SpamWatch?*
+     SpamWatch menyimpan daftar larangan besar yang terus diperbarui dari robot spam, troll, pengirim spam bitcoin, dan karakter yang tidak menyenangkan. 
+     Selalu bantu pelarangan spammer dari grup Anda secara otomatis. Jadi, Anda tidak perlu khawatir spammer menyerbu grup Anda. 
+     * Catatan: * Pengguna dapat mengajukan banding atas larangan spamwatch di @SpamwatchSupport
+
+     *Apa itu Spam protection?*
+     SpamProtection adalah layanan antispam AI baru yang memastikan bahwa obrolan Anda bebas dari robot spam, penipu, dan pedofil.
+     Menggunakan @Intellivoid's Coffeehouse Artificial Engine. Setiap larangan diperiksa oleh orang-orang terpercaya sebelum diselesaikan.
+
+gtranslate_help: |
+     • `/tr` or `/tl` (kode bahasa) sebagai balasan untuk pesan panjang.
+     *Example:* `/tr en`*:* menerjemahkan ke bahasa inggris.
+         `/tr ja-en`*:* menerjemahkan bahasa jepang ke inggris.
+
+     *Kode Lang tersedia:*
+     `
+     af,am,ar,az,be,bg,bn,bs,ca,ceb,co,cs,cy,da,de,el,en,eo,es,
+     et,eu,fa,fi,fr,fy,ga,gd,gl,gu,ha,haw,hi,hmn,hr,ht,hu,hy,
+     id,ig,is,it,iw,ja,jw,ka,kk,km,kn,ko,ku,ky,la,lb,lo,lt,lv,mg,mi,mk,
+     ml,mn,mr,ms,mt,my,ne,nl,no,ny,pa,pl,ps,pt,ro,ru,sd,si,sk,sl,
+     sm,sn,so,sq,sr,st,su,sv,sw,ta,te,tg,th,tl,tr,uk,ur,uz,
+     vi,xh,yi,yo,zh,zh_CN,zh_TW,zu
+     `
+locks_help: |
+     Apakah stiker mengganggu Anda? atau ingin menghindari orang berbagi tautan? atau gambar? 
+     Anda berada di tempat yang tepat!
+     Modul locks memungkinkan Anda mengunci beberapa item umum di 
+     dunia telegram; bot akan secara otomatis menghapusnya!
+
+      • `/locktypes`*:* Mencantumkan semua kemungkinan jenis locks
+
+     *Khusus Admin:*
+      • `/lock <type>`*:* Lock item dari jenis tertentu (tidak tersedia pada private)
+      • `/unlock <type>`*:* Unlock item dari jenis tertentu (tidak tersedia pada private)
+      • `/locks`*:* Daftar locks saat ini dalam obrolan ini.
+
+     Locks dapat digunakan untuk membatasi pengguna grup. 
+     misalnya: Locks url akan otomatis menghapus semua pesan dengan url, locks stiker akan membatasi semua 
+     pengguna non-admin mengirim stiker, dll. 
+     Mengunci bot akan menghentikan non-admin menambahkan bot ke obrolan.
+
+     *Catatan:*
+      • Unlocking permission *info* akan mengizinkan anggota (non-admin) untuk mengubah informasi grup, seperti deskripsi atau nama grup
+      • Unlocking permission *pin* akan mengizinkan anggota (non-admin) untuk menyematkan pesan di grup
+
+log_help: |
+      *Khusus Admin:*
+      • `/logchannel`*:* dapatkan info saluran log
+      • `/setlog`*:* mengatur saluran log.
+      • `/unsetlog`*:* hapus saluran log.
+
+      Pengaturan saluran log dilakukan dengan:
+      • menambahkan bot ke saluran yang diinginkan (sebagai admin!)
+      • mengirim `/setlog` di saluran
+      • meneruskan `/setlog` ke grup
+
+markdown_help_text: |
+      Penurunan harga adalah alat pemformatan yang sangat kuat yang didukung oleh telegram. Kaguya memiliki beberapa peningkatan, untuk memastikannya 
+      pesan yang disimpan diurai dengan benar, dan untuk memungkinkan Anda membuat tombol.
+
+      - <code>_italic_</code>: membungkus teks dengan '_' akan menghasilkan teks miring
+      - <code>*bold*</code>: membungkus teks dengan '*' akan menghasilkan teks tebal
+      - <code>`code`</code>: membungkus teks dengan '"' akan menghasilkan teks berspasi tunggal, juga dikenal sebagai 'kode'
+      - <code>[sometext](someURL)</code>: ini akan membuat tautan - pesan itu hanya akan ditampilkan <code>sometext</code>,
+      dan mengetuknya akan membuka halaman di <code>someURL</code>.
+      Misal: <code>[test](example.com)</code>
+
+      - <code>[buttontext](buttonurl:someURL)</code>: ini adalah peningkatan khusus untuk memungkinkan pengguna memiliki telegram 
+      tombol di markdown mereka. <code>buttontext</code> akan menjadi apa yang ditampilkan pada tombol, dan <code>someurl</code>
+      akan menjadi url yang dibuka.
+      Misal: <code>[This is a button](buttonurl:example.com)</code>
+
+      Jika Anda ingin beberapa tombol pada baris yang sama, gunakan: sama, seperti:
+      <code>[one](buttonurl://example.com)
+      [two](buttonurl://google.com:same)</code>
+      Ini akan membuat dua tombol pada satu baris, bukan satu tombol per baris.
+
+      Ingatlah bahwa pesan Anda <b> HARUS </b> berisi teks selain hanya tombol!
+
+misc_help: |
+      • `/id`*:* get the current group id. If used by replying to a message, gets that user's id.
+      • `/gifid`*:* reply to a gif to me to tell you its file ID.
+      • `/info`*:* get information about a user.
+      • `/markdownhelp`*:* quick summary of how markdown works in telegram - can only be called in private chats.
+      • `/ud <word>`*:* Type the word or expression you want to search use.
+      • `/urban <word>`*:* Same as /ud
+      • `/paste` - Do a paste at `nekobin.com`
+      • `/react`*:* Reacts with a random reaction
+      • `/weebify <text>`*:* returns a weebified text
+      • `/tr (language code)` as reply to a long message.
+      • `/time <query>`*:* Gives information about a timezone.
+      • `/cash`*:* currency converter
+        example syntax: /cash 1 USD INR
+      • `/cinfo`*:* get info about a user or a chat (uses @Pyrogram methods)
+      • `/getid`*:* get IDs of chat, user and chat message.
+      • `/spbinfo`*:* get info about a user from @Intellivoid's SpamProtection API
+      ───────────────────────────────
+      *Last.FM*
+      Share what you're what listening to with the help of this module!
+      *Available commands:*
+      • `/setuser <username>`*:* sets your last.fm username.
+      • `/clearuser`*:* removes your last.fm username from the bot's database.
+      • `/lastfm`*:* returns what you're scrobbling on last.fm.
+
+muting_help: |
+      *Khusus Admin:*
+       • `/mute <userhandle>`*:* silences a user. Can also be used as a reply, muting the replied to user.
+       • `/tmute <userhandle> x(m/h/d)`*:* mutes a user for x time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
+       • `/unmute <userhandle>`*:* unmutes a user. Can also be used as a reply, muting the replied to user.
+
+notes_help: |
+       • `/get <notename>`*:* get the note with this notename
+       • `#<notename>`*:* same as /get
+       • `/notes` or `/saved`*:* list all saved notes in this chat
+       • `/number` *:* Will pull the note of that number in the list.
+        If you would like to retrieve the contents of a note without any formatting, use `/get <notename> noformat`. This can
+        be useful when updating a current note.
+
+        *Khusus Admin:*
+       • `/save <notename> <notedata>`*:* saves notedata as a note with name notename
+        A button can be added to a note by using standard markdown link syntax - the link should just be prepended with a
+         `buttonurl:` section, as such: `[somelink](buttonurl:example.com)`. Check `/markdownhelp` for more info.
+       • `/save <notename>`*:* save the replied message as a note with name notename
+       • `/clear <notename>`*:* clear note with this name
+       • `/removeallnotes`*:* removes all notes from the group
+       *Note:* Note names are case-insensitive, and they are automatically converted to lowercase before getting saved.
+
+purge_help: |
+       *Khusus Admin:*
+        • `/del`*:* menghapus pesan yang Anda balas
+        • `/purge`*:* menghapus semua pesan antara ini dan pesan yang dibalas.
+        • `/purge <integer X>`*:* menghapus pesan balasan, dan X pesan mengikutinya jika membalas pesan.
+
+reports_help: |
+        • `/report <reason>` *:* membalas pesan untuk melaporkannya ke admin. 
+        • `@ admin` *: * membalas pesan untuk melaporkannya ke admin.
+         *CATATAN:* Tak satu pun dari ini akan dipicu jika digunakan oleh admin. 
+         
+         *Khusus Admin:* 
+          • `/ reports <on / off>` *: * mengubah pengaturan laporan, atau melihat status saat ini.
+          • Jika selesai di pm, matikan status Anda.
+          • Jika dalam grup, matikan status grup itu.
+
+rules_help: |
+      • `/rules`*:* dapatkan rules untuk obrolan ini.
+       *Khusus Admin:*
+      • `/setrules <your rules here>`*:* tetapkan rules untuk obrolan ini.
+      • `/clearrules`*:* hapus rules untuk obrolan ini.
+
+userinfo_help: |
+      - `/setbio <text>`*:* sambil membalas, akan menyimpan bio pengguna lain
+      - `/bio`*:* akan mendapatkan bio Anda atau pengguna lain. Ini tidak dapat diatur sendiri.
+      - `/setme <text>`*:* akan mengatur info Anda
+      - `/me`*:* akan mendapatkan info Anda atau pengguna lain
+
+warns_help: |
+      • `/warns <userhandle>`*:* dapatkan nomor pengguna, dan alasan, peringatan.
+      • `/warnlist`*:* daftar semua filter peringatan saat ini
+
+      *Khusus Admin:*
+      • `/warn <userhandle>`*:* peringatkan pengguna. Setelah 3 peringatan, pengguna akan diblokir dari grup. Bisa juga digunakan sebagai balasan.
+      • `/resetwarn <userhandle>`*:* setel ulang peringatan untuk pengguna. Bisa juga digunakan sebagai balasan.
+      • `/addwarn <keyword> <reply message>`*:* setel filter peringatan pada kata kunci tertentu. 
+      Jika Anda ingin kata kunci Anda jadilah kalimat, lengkapi dengan tanda kutip, seperti: `/ addwarn" very angry "This is an angry user`.
+      • `/nowarn <keyword>`*:* hentikan filter peringatan
+      • `/warnlimit <num>`*:* setel batas peringatan
+      • `/strongwarn <on/yes/off/no>`*:* Jika disetel ke aktif, melebihi batas peringatan akan mengakibatkan larangan. Lain, hanya akan menendang.
+
+greetings_help: |
+      *Khusus Admin:*
+       • `/welcome <on/off>`*:* aktifkan / nonaktifkan pesan selamat datang.
+       • `/welcome`*:* menunjukkan pengaturan selamat datang saat ini.
+       • `/welcome noformat`*:* menunjukkan pengaturan selamat datang saat ini, tanpa pemformatan - berguna untuk mendaur ulang pesan selamat datang Anda!
+       • `/goodbye`*:* penggunaan dan argumen yang sama dengan `/ welcome`.
+       • `/setwelcome <sometext>`*:* setel pesan selamat datang khusus. Jika digunakan membalas media, gunakan media itu.
+       • `/setgoodbye <sometext>`*:* setel pesan selamat tinggal kustom. Jika digunakan membalas media, gunakan media itu.
+       • `/resetwelcome`*:* reset ke pesan selamat datang ke default.
+       • `/resetgoodbye`*:* reset ke pesan selamat tinggal ke default.
+       • `/cleanwelcome <on/off>`*:* Pada anggota baru, coba hapus pesan selamat datang sebelumnya untuk menghindari spamming pada obrolan.
+       • `/welcomemutehelp`*:* memberikan informasi tentang pembungkaman selamat datang.
+       • `/cleanservice <on/off`*:* menghapus pesan layanan selamat datang / tinggalkan telegram.
+       *Contoh:*
+      pengguna bergabung dengan obrolan, pengguna meninggalkan obrolan.
+
+      *Welcome markdown:*
+       • `/welcomehelp`*:* lihat lebih banyak informasi pemformatan untuk pesan welcome/goodbye khusus.
+       
+nation_help: |
+      - `/sensei` - Daftar semua anggota Zero Union.
+      - `/sensei` - Daftar semua Level Sensei.
+      - `/sakuras` - Daftar semua Level Sakura.
+      - `/sardegnas` - Daftar semua Level Sardegnas.
+      - `/neptunians` - Daftat semua Level Neptunia.
+      Catatan: Perintah ini mencantumkan pengguna dengan hak istimewa bot khusus dan hanya dapat digunakan oleh mereka.
+      Anda dapat mengunjungi @ZeroBotSupport untuk menanyakan lebih lanjut tentang ini.
+      
+nlp_help: |
+
+      *Chatroom Spam Prediction*
+       Fitur ini menggunakan AI Coffeehouse @ Intellivoid memproses pesan obrolan dan mendeteksi spam. 
+       Ini berada di bawah Coffehouse 'NLP. Belajar lebih tentang
+       itu [disini](https://docs.intellivoid.net/coffeehouse/v1/nlp/spam_prediction/chatroom)
+       *Perintah:*
+        • `/nlpstat <on/off/yes/no>`*:* alihkan NLP dalam obrolan Anda.

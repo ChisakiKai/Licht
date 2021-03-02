@@ -44,7 +44,7 @@ from tg_bot.modules.language import gs
 
 PM_START_TEXT = """
 Hi {}, my name is {}!
-I am an Anime themed group management bot with some fun extras [;)](https://telegra.ph/file/095d7e696096e21b06447.jpg)
+I am an Anime themed group management bot with some fun extras [;)](https://telegra.ph/file/57d312f7ba4ed19bb6035.jpg)
 
 You can find the list of available commands with /help.
 """
