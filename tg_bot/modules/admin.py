@@ -452,8 +452,10 @@ def adminlist(update, context):
     except BadRequest:  # if original message is deleted
         return
 
+
 def get_help(chat):
     return gs(chat, "admin_help")
+
 
 ADMINLIST_HANDLER = DisableAbleCommandHandler("admins", adminlist)
 
