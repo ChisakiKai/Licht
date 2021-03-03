@@ -341,8 +341,10 @@ def invite(update: Update, context: CallbackContext):
         )
 
 
-@loggable
+@bot_admin
+@user_admin
 @connection_status
+@loggable
 def adminlist(update, context):
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
