@@ -95,7 +95,7 @@ bans_help: |
 
      *Khusus Admin:*
     - `/ban <userhandle>`*:* melarang pengguna. (melalui pegangan, atau balasan).
-    - `/sban <userhandle>`*:* Silently ban a user. Deletes command, Replied message and doesn't reply. (via handle, or reply).
+    - `/sban <userhandle>`*:* Cekal pengguna secara diam-diam. Menghapus perintah, membalas pesan dan tidak membalas. (melalui pegangan, atau balasan).
     - `/tban <userhandle>x(m/h/d)`*:* melarang pengguna selama x waktu. (melalui pegangan, atau balasan). m = menit, h = jam, d = hari.
     - `/unban <userhandle>`*:* batalkan larangan pengguna. (melalui pegangan, atau balasan)
     - `/kick <userhandle>`*:* menendang pengguna keluar dari grup, (melalui pegangan, atau balasan)
@@ -387,7 +387,7 @@ warns_help: |
 
       *Khusus Admin:*
       • `/warn <userhandle>`*:* peringatkan pengguna. Setelah 3 peringatan, pengguna akan diblokir dari grup. Bisa juga digunakan sebagai balasan.
-      • `/dwarn <userhandle>`*:* warn a user and delete the message. After 3 warns, the user will be banned from the group. Can also be used as a reply.
+      • `/dwarn <userhandle>`*:* peringatkan pengguna dan hapus pesan tersebut. Setelah 3 peringatan, pengguna akan dilarang dari grup. Bisa juga digunakan sebagai balasan.
       • `/resetwarn <userhandle>`*:* setel ulang peringatan untuk pengguna. Bisa juga digunakan sebagai balasan.
       • `/addwarn <keyword> <reply message>`*:* setel filter peringatan pada kata kunci tertentu. 
       Jika Anda ingin kata kunci Anda jadilah kalimat, lengkapi dengan tanda kutip, seperti: `/ addwarn" very angry "This is an angry user`.

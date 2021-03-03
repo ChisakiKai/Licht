@@ -319,6 +319,7 @@ misc_help: |
       • `/paste` - Do a paste at `nekobin.com`
       • `/react`*:* Reacts with a random reaction
       • `/weebify <text>`*:* returns a weebified text
+      • `/wiki` text - Returns search from wikipedia for the input text.
       • `/tr (language code)` as reply to a long message.
       • `/time <query>`*:* Gives information about a timezone.
       • `/cash`*:* currency converter
