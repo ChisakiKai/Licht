@@ -1,34 +1,31 @@
 import os
 import re
-import requests
 import urllib
-from urllib.request import urlopen
-from urllib.error import URLError, HTTPError
-from bs4 import BeautifulSoup
+from urllib.error import HTTPError, URLError
 
-from typing import List
+import requests
+from bs4 import BeautifulSoup
 from telegram import InputMediaPhoto, TelegramError
 
 from tg_bot import dispatcher
 from tg_bot.modules.disable import DisableAbleCommandHandler
-from tg_bot.modules.helper_funcs.chat_status import(
-   is_user_admin
-   user_admin
-)   
-   
+from tg_bot.modules.helper_funcs.alternate import typing_action
+
 opener = urllib.request.build_opener()
 useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.38 Safari/537.36"
 # useragent = 'Mozilla/5.0 (Linux; Android 6.0.1; SM-G920V Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36'
 opener.addheaders = [("User-agent", useragent)]
 
 
-def reverse(bot: Bot, update: Update, args: List[str]):
+@typing_action
+def reverse(update, context):
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
 
     msg = update.effective_message
     chat_id = update.effective_chat.id
     rtmid = msg.message_id
+    args = context.args
     imagename = "okgoogle.png"
 
     reply = msg.reply_to_message
@@ -42,13 +39,13 @@ def reverse(bot: Bot, update: Update, args: List[str]):
         else:
             msg.reply_text("Reply to an image or sticker to lookup.")
             return
-        image_file = bot.get_file(file_id)
+        image_file = context.bot.get_file(file_id)
         image_file.download(imagename)
         if args:
             txt = args[0]
             try:
                 lim = int(txt)
-            except:
+            except BaseException:
                 lim = 2
         else:
             lim = 2
@@ -58,7 +55,7 @@ def reverse(bot: Bot, update: Update, args: List[str]):
             img_link = splatargs[1]
             try:
                 lim = int(splatargs[2])
-            except:
+            except BaseException:
                 lim = 2
         elif len(splatargs) == 2:
             img_link = splatargs[1]
@@ -81,7 +78,9 @@ def reverse(bot: Bot, update: Update, args: List[str]):
             msg.reply_text(f"{UE.reason}")
             return
         except ValueError as VE:
-            msg.reply_text(f"{VE}\nPlease try again using http or https protocol.")
+            msg.reply_text(
+                f"{VE}\nPlease try again using http or https protocol."
+            )
             return
     else:
         msg.reply_markdown(
@@ -95,19 +94,23 @@ def reverse(bot: Bot, update: Update, args: List[str]):
             "encoded_image": (imagename, open(imagename, "rb")),
             "image_content": "",
         }
-        response = requests.post(searchUrl, files=multipart, allow_redirects=False)
+        response = requests.post(
+            searchUrl, files=multipart, allow_redirects=False
+        )
         fetchUrl = response.headers["Location"]
 
         if response != 400:
-            xx = bot.send_message(
+            xx = context.bot.send_message(
                 chat_id,
                 "Image was successfully uploaded to Google."
                 "\nParsing source now. Maybe.",
                 reply_to_message_id=rtmid,
             )
         else:
-            xx = bot.send_message(
-                chat_id, "Google told me to go away.", reply_to_message_id=rtmid
+            xx = context.bot.send_message(
+                chat_id,
+                "Google told me to go away.",
+                reply_to_message_id=rtmid,
             )
             return
 
@@ -135,7 +138,6 @@ def reverse(bot: Bot, update: Update, args: List[str]):
                 f"[{guess}]({fetchUrl})\n[Visually similar images]({imgspage})"
                 "\nCouldn't fetch any images.",
                 parse_mode="Markdown",
-                disable_web_page_preview=True,
             )
             return
 
@@ -144,7 +146,9 @@ def reverse(bot: Bot, update: Update, args: List[str]):
             lmao = InputMediaPhoto(media=str(link))
             imglinks.append(lmao)
 
-        bot.send_media_group(chat_id=chat_id, media=imglinks, reply_to_message_id=rtmid)
+        context.bot.send_media_group(
+            chat_id=chat_id, media=imglinks, reply_to_message_id=rtmid
+        )
         xx.edit_text(
             f"[{guess}]({fetchUrl})\n[Visually similar images]({imgspage})",
             parse_mode="Markdown",
@@ -157,8 +161,6 @@ def reverse(bot: Bot, update: Update, args: List[str]):
 
 
 def ParseSauce(googleurl):
-    """Parse/Scrape the HTML code for the info we want."""
-
     source = opener.open(googleurl).read()
     soup = BeautifulSoup(source, "html.parser")
 
@@ -168,12 +170,13 @@ def ParseSauce(googleurl):
         for bess in soup.findAll("a", {"class": "PBorbe"}):
             url = "https://www.google.com" + bess.get("href")
             results["override"] = url
-    except:
+    except BaseException:
         pass
 
     for similar_image in soup.findAll("input", {"class": "gLFyf"}):
-        url = "https://www.google.com/search?tbm=isch&q=" + urllib.parse.quote_plus(
-            similar_image.get("value")
+        url = (
+            "https://www.google.com/search?tbm=isch&q="
+            + urllib.parse.quote_plus(similar_image.get("value"))
         )
         results["similar_images"] = url
 
@@ -207,7 +210,7 @@ def scam(imgspage, lim):
 
 
 REVERSE_HANDLER = DisableAbleCommandHandler(
-    "reverse", reverse, pass_args=True, admin_ok=True
+    "reverse", reverse, pass_args=True, admin_ok=True, run_async=True
 )
 
 dispatcher.add_handler(REVERSE_HANDLER)
