@@ -93,13 +93,14 @@ backup_help: |
      - `/export`*:* !!! This isn't a command yet, but should be coming soon!
 
 bans_help: |
-    - /kickme: kicks the user who issued the command
+    -`/kickme`*:* kicks the user who issued the command
 
-     *Admin only:*
-    - `/ban <userhandle>`*:* bans a user. (via handle, or reply)
-    - `/tban <userhandle>x(m/h/d)`*:* bans a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
+    *Admins only:*
+    - `/ban <userhandle>`*:* bans a user. (via handle, or reply).
+    - `/sban <userhandle>`*:* Silently ban a user. Deletes command, Replied message and doesn't reply. (via handle, or reply).
+    - `/tban <userhandle> x(m/h/d)`*:* bans a user for `x` time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
     - `/unban <userhandle>`*:* unbans a user. (via handle, or reply)
-    - `/kick <userhandle>`*:* kick a user out of the group, (via handle, or reply)
+    - `/punch <userhandle>`*:* Punches a user out of the group, (via handle, or reply)
 
 blacklist_help: |
     - Blacklist Users
@@ -390,12 +391,18 @@ warns_help: |
 
       *Admins only:*
       • `/warn <userhandle>`*:* warn a user. After 3 warns, the user will be banned from the group. Can also be used as a reply.
+      • `/dwarn <userhandle>`*:* warn a user and delete the message. After 3 warns, the user will be banned from the group. Can also be used as a reply.
       • `/resetwarn <userhandle>`*:* reset the warns for a user. Can also be used as a reply.
       • `/addwarn <keyword> <reply message>`*:* set a warning filter on a certain keyword. If you want your keyword to
       be a sentence, encompass it with quotes, as such: `/addwarn "very angry" This is an angry user`.
       • `/nowarn <keyword>`*:* stop a warning filter
       • `/warnlimit <num>`*:* set the warning limit
       • `/strongwarn <on/yes/off/no>`*:* If set to on, exceeding the warn limit will result in a ban. Else, will just kick.
+
+wikipedia_help: |
+      Wikipedia is an online encyclopedia and, as a means to that end, an online community of individuals interested in building and using a high-quality encyclopedia in a spirit of mutual respect. 
+      Therefore, there are certain things that Wikipedia is not.
+      • `/wiki <text>`*:* Returns search from wikipedia for the input text.
 
 greetings_help: |
       *Admins only:*

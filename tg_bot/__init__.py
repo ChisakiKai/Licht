@@ -104,11 +104,11 @@ updater = tg.Updater(
     workers=min(32, os.cpu_count() + 4),
     request_kwargs={"read_timeout": 10, "connect_timeout": 10},
 )
-telethn = TelegramClient("kigyo", APP_ID, API_HASH)
+telethn = TelegramClient("licht", APP_ID, API_HASH)
 dispatcher = updater.dispatcher
 
 kp = Client(
-    "KigyoPyro",
+    "LichtPyro",
     api_id=APP_ID,
     api_hash=API_HASH,
     bot_token=TOKEN,

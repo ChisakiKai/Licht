@@ -20,6 +20,7 @@ speedtest-cli
 spamwatch
 telethon==1.16.4
 configparser
+wikipedia
 pyrogram
 tgcrypto
 alphabet_detector

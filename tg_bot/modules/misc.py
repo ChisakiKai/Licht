@@ -324,7 +324,7 @@ def stats(update, context):
             + "Maintained by [ZERO](t.me/Anomaliii)\n"
             + "Built with ❤️ using python-telegram-bot\n\n"
             + status
-            + "\n*Bot statistics*:\n"
+            + "\n*Bot statistics*:`\n`"
             + "\n".join([mod.__stats__() for mod in STATS])
             + "\n\n*SRC*: [GitHub](https://github.com/ChisakiKai/Licht)",
             parse_mode=ParseMode.MARKDOWN,
@@ -335,7 +335,7 @@ def stats(update, context):
             f"*Licht (@{context.bot.username}), *\n"
             + "built by [ZERO](t.me/Anomaliii)\n"
             + "Built with ❤️ using python-telegram-bot\n"
-            + "\n*Bot statistics*:\n"
+            + "\n*Bot statistics*:`\n`"
             + "\n".join([mod.__stats__() for mod in STATS])
             + "\n\n*SRC*: [GitHub](https://github.com/ChisakiKai/Licht)",
             parse_mode=ParseMode.MARKDOWN,

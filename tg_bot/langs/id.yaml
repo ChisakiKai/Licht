@@ -94,7 +94,8 @@ bans_help: |
     - `/kickme`*:* menendang pengguna yang mengeluarkan perintah tersebut.
 
      *Khusus Admin:*
-    - `/ban <userhandle>`*:* melarang pengguna. (melalui pegangan, atau balasan)
+    - `/ban <userhandle>`*:* melarang pengguna. (melalui pegangan, atau balasan).
+    - `/sban <userhandle>`*:* Cekal pengguna secara diam-diam. Menghapus perintah, membalas pesan dan tidak membalas. (melalui pegangan, atau balasan).
     - `/tban <userhandle>x(m/h/d)`*:* melarang pengguna selama x waktu. (melalui pegangan, atau balasan). m = menit, h = jam, d = hari.
     - `/unban <userhandle>`*:* batalkan larangan pengguna. (melalui pegangan, atau balasan)
     - `/kick <userhandle>`*:* menendang pengguna keluar dari grup, (melalui pegangan, atau balasan)
@@ -386,12 +387,18 @@ warns_help: |
 
       *Khusus Admin:*
       • `/warn <userhandle>`*:* peringatkan pengguna. Setelah 3 peringatan, pengguna akan diblokir dari grup. Bisa juga digunakan sebagai balasan.
+      • `/dwarn <userhandle>`*:* peringatkan pengguna dan hapus pesan tersebut. Setelah 3 peringatan, pengguna akan dilarang dari grup. Bisa juga digunakan sebagai balasan.
       • `/resetwarn <userhandle>`*:* setel ulang peringatan untuk pengguna. Bisa juga digunakan sebagai balasan.
       • `/addwarn <keyword> <reply message>`*:* setel filter peringatan pada kata kunci tertentu. 
       Jika Anda ingin kata kunci Anda jadilah kalimat, lengkapi dengan tanda kutip, seperti: `/ addwarn" very angry "This is an angry user`.
       • `/nowarn <keyword>`*:* hentikan filter peringatan
       • `/warnlimit <num>`*:* setel batas peringatan
       • `/strongwarn <on/yes/off/no>`*:* Jika disetel ke aktif, melebihi batas peringatan akan mengakibatkan larangan. Lain, hanya akan menendang.
+      
+wikipedia_help: |
+      Wikipedia adalah ensiklopedia online dan, sebagai sarana untuk mencapai tujuan itu, komunitas online individu yang tertarik untuk membangun dan menggunakan ensiklopedia berkualitas tinggi dengan semangat saling menghormati.
+      Oleh karena itu, ada hal-hal tertentu yang tidak dimiliki Wikipedia.
+      • `/wiki <text>`*:* Mengembalikan penelusuran dari wikipedia untuk teks masukan.
 
 greetings_help: |
       *Khusus Admin:*
