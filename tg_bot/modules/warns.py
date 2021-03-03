@@ -11,6 +11,7 @@ from tg_bot.modules.helper_funcs.chat_status import (
     is_user_admin,
     user_admin,
     user_admin_no_reply,
+    can_delete,
 )
 from tg_bot.modules.helper_funcs.extraction import (
     extract_text,
@@ -22,7 +23,6 @@ from tg_bot.modules.helper_funcs.misc import split_message
 from tg_bot.modules.helper_funcs.string_handling import split_quotes
 from tg_bot.modules.log_channel import loggable
 from tg_bot.modules.sql import warns_sql as sql
-from tg_bot.modules.sql.approve_sql import is_approved
 from telegram import (
     CallbackQuery,
     Chat,
@@ -44,6 +44,7 @@ from telegram.ext import (
     run_async,
 )
 from telegram.utils.helpers import mention_html
+from tg_bot.modules.sql.approve_sql import is_approved
 
 WARN_HANDLER_GROUP = 9
 CURRENT_WARNING_FILTER_STRING = "<b>Current warning filters in this chat:</b>\n"
@@ -62,7 +63,7 @@ def warn(
             message.reply_text("SARDEGNAs cant be warned.")
         else:
             message.reply_text(
-                "Sardegna triggered an auto warn filter!\n I can't warn Sardegnas but they should avoid abusing this."
+                "Sardegna triggered an auto warn filter!\n I can't warn Sardegna but they should avoid abusing this."
             )
         return
 
@@ -71,7 +72,7 @@ def warn(
             message.reply_text("Whitelisted users are warn immune.")
         else:
             message.reply_text(
-                "Neptunian triggered an auto warn filter!\nI can't warn Neptunians users but they should avoid abusing this."
+                "Neptunian triggered an auto warn filter!\nI can't warn Neptunian but they should avoid abusing this."
             )
         return
 
@@ -84,7 +85,7 @@ def warn(
     num_warns, reasons = sql.warn_user(user.id, chat.id, reason)
     if num_warns >= limit:
         sql.reset_warns(user.id, chat.id)
-        if soft_warn:  # kick
+        if soft_warn:  # punch
             chat.unban_member(user.id)
             reply = (
                 f"<code>❕</code><b>Kick Event</b>\n"
@@ -196,7 +197,8 @@ def warn_user(update: Update, context: CallbackContext) -> str:
     warner: Optional[User] = update.effective_user
 
     user_id, reason = extract_user_and_text(message, args)
-
+    if message.text.startswith("/d") and message.reply_to_message:
+        message.reply_to_message.delete()
     if user_id:
         if (
             message.reply_to_message
@@ -375,7 +377,6 @@ def reply_filter(update: Update, context: CallbackContext) -> str:
         return
     if is_approved(chat.id, user.id):
         return
-
     chat_warn_filters = sql.get_chat_warn_triggers(chat.id)
     to_match = extract_text(message)
     if not to_match:
@@ -434,18 +435,18 @@ def set_warn_strength(update: Update, context: CallbackContext):
             return (
                 f"<b>{html.escape(chat.title)}:</b>\n"
                 f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
-                f"Has enabled strong warns. Users will be banned"
+                f"Has enabled strong warns. Users will be seriously punched.(banned)"
             )
 
         elif args[0].lower() in ("off", "no"):
             sql.set_warn_strength(chat.id, True)
             msg.reply_text(
-                "Too many warns will now result in a kick! Users will be able to join again after."
+                "Too many warns will now result in a normal punch! Users will be able to join again after."
             )
             return (
                 f"<b>{html.escape(chat.title)}:</b>\n"
                 f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
-                f"Has disabled bans. I will just kick users."
+                f"Has disabled strong punches. I will use normal punch on users."
             )
 
         else:
@@ -454,7 +455,7 @@ def set_warn_strength(update: Update, context: CallbackContext):
         limit, soft_warn = sql.get_warn_setting(chat.id)
         if soft_warn:
             msg.reply_text(
-                "Warns are currently set to *kick* users when they exceed the limits.",
+                "Warns are currently set to *punch* users when they exceed the limits.",
                 parse_mode=ParseMode.MARKDOWN,
             )
         else:
@@ -489,6 +490,7 @@ def __chat_settings__(chat_id, user_id):
         f"This chat has `{num_warn_filters}` warn filters. "
         f"It takes `{limit}` warns before the user gets *{'kicked' if soft_warn else 'banned'}*."
     )
+
 
 
 from tg_bot.modules.language import gs

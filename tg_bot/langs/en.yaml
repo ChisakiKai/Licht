@@ -96,8 +96,8 @@ bans_help: |
     -`/kickme`*:* kicks the user who issued the command
 
     *Admins only:*
-    - `/ban <userhandle>`*:* bans a user. (via handle, or reply)
-    - `/sban <userhandle>`*:* Silently ban a user. Deletes command, Replied message and doesn't reply. (via handle, or reply)
+    - `/ban <userhandle>`*:* bans a user. (via handle, or reply).
+    - `/sban <userhandle>`*:* Silently ban a user. Deletes command, Replied message and doesn't reply. (via handle, or reply).
     - `/tban <userhandle> x(m/h/d)`*:* bans a user for `x` time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
     - `/unban <userhandle>`*:* unbans a user. (via handle, or reply)
     - `/punch <userhandle>`*:* Punches a user out of the group, (via handle, or reply)
@@ -391,6 +391,7 @@ warns_help: |
 
       *Admins only:*
       • `/warn <userhandle>`*:* warn a user. After 3 warns, the user will be banned from the group. Can also be used as a reply.
+      • `/dwarn <userhandle>`*:* warn a user and delete the message. After 3 warns, the user will be banned from the group. Can also be used as a reply.
       • `/resetwarn <userhandle>`*:* reset the warns for a user. Can also be used as a reply.
       • `/addwarn <keyword> <reply message>`*:* set a warning filter on a certain keyword. If you want your keyword to
       be a sentence, encompass it with quotes, as such: `/addwarn "very angry" This is an angry user`.
