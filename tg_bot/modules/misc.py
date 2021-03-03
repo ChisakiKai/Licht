@@ -238,7 +238,7 @@ def info(update: Update, context: CallbackContext):
     else:
         message.reply_text(
             text, parse_mode=ParseMode.HTML, disable_web_page_preview=True
-        ) 
+        )
 
 
 @user_admin
@@ -385,9 +385,7 @@ def covid(update, context):
         f"Data provided by <a href='{link}'>Worldometer</a>"
     )
 
-    message.reply_text(
-        output, parse_mode=ParseMode.HTML, disable_web_page_preview=True
-    )
+    message.reply_text(output, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
 
 def format_integer(number, thousand_separator="."):
@@ -407,8 +405,8 @@ def format_integer(number, thousand_separator="."):
                 result = thousand_separator + char + result
         else:
             result = char + result
-    return result  
-  
+    return result
+
 
 def paste(update, context):
     msg = update.effective_message
@@ -450,7 +448,7 @@ def paste(update, context):
         msg.reply_text("Give me a text file to paste on nekobin")
         return
 
-        
+
 def ping(update: Update, _):
     msg = update.effective_message
     start_time = time.time()
