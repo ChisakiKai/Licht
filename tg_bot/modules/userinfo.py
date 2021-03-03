@@ -1,187 +1,209 @@
 import html
-from typing import Optional
+from typing import List
 
-from telegram import MAX_MESSAGE_LENGTH, Message, ParseMode, User
+from telegram import Update, ParseMode, MAX_MESSAGE_LENGTH
+from telegram.ext.dispatcher import CallbackContext
 from telegram.utils.helpers import escape_markdown
 
 import tg_bot.modules.sql.userinfo_sql as sql
-from tg_bot import DEV_USERS, dispatcher
+from tg_bot import dispatcher, SUDO_USERS, DEV_USERS
 from tg_bot.modules.disable import DisableAbleCommandHandler
-from tg_bot.modules.helper_funcs.alternate import typing_action
 from tg_bot.modules.helper_funcs.extraction import extract_user
 
 
-@typing_action
-def about_me(update, context):
-    message = update.effective_message  # type: Optional[Message]
+def about_me(update: Update, context: CallbackContext):
     args = context.args
+    bot = context.bot
+    message = update.effective_message
     user_id = extract_user(message, args)
 
-    if user_id:
-        user = context.bot.get_chat(user_id)
-    else:
-        user = message.from_user
-
-    info = USER_INFO.find_one({'_id': user.id})
+    user = bot.get_chat(user_id) if user_id else message.from_user
+    info = sql.get_user_me_info(user.id)
 
     if info:
         update.effective_message.reply_text(
-            "*{}*:\n{}".format(user.first_name, escape_markdown(info["info"])),
+            f"*{user.first_name}*:\n{escape_markdown(info)}",
             parse_mode=ParseMode.MARKDOWN,
         )
     elif message.reply_to_message:
         username = message.reply_to_message.from_user.first_name
         update.effective_message.reply_text(
-            username + "Information about him is currently unavailable !"
+            f"{username} hasn't set an info message about themselves yet!"
         )
     else:
         update.effective_message.reply_text(
-            "You have not added any information about yourself yet !"
+            "You haven't set an info message about yourself yet!"
         )
 
 
-@typing_action
-def set_about_me(update, context):
-    message = update.effective_message  # type: Optional[Message]
+def set_about_me(update: Update, context: CallbackContext):
+    bot = context.bot
+    message = update.effective_message
     user_id = message.from_user.id
-    if user_id == 1087968824:
-        message.reply_text(
-            "You cannot set your own bio when you're in anonymous admin mode!"
-        )
+    if user_id in (777000, 1087968824):
+        message.reply_text("Don't set info for Telegram bots!")
         return
+    if message.reply_to_message:
+        repl_message = message.reply_to_message
+        repl_user_id = repl_message.from_user.id
+        if repl_user_id == bot.id and (user_id in SUDO_USERS or user_id in DEV_USERS):
+            user_id = repl_user_id
 
     text = message.text
-    info = text.split(
-        None, 1
-    )  # use python's maxsplit to only remove the cmd, hence keeping newlines.
+    info = text.split(None, 1)
+
     if len(info) == 2:
         if len(info[1]) < MAX_MESSAGE_LENGTH // 4:
-            USER_INFO.update_one(
-                {'_id': user_id},
-                {"$set": {'info': info[1]}},
-                upsert=True)
-            message.reply_text("Your bio has been saved successfully")
+            sql.set_user_me_info(user_id, info[1])
+            if user_id == bot.id:
+                message.reply_text("Updated my info!")
+            else:
+                message.reply_text("Updated your info!")
         else:
             message.reply_text(
-                " About You{} To be confined to letters ".format(
+                "The info needs to be under {} characters! You have {}.".format(
                     MAX_MESSAGE_LENGTH // 4, len(info[1])
                 )
             )
 
 
-@typing_action
-def about_bio(update, context):
-    message = update.effective_message  # type: Optional[Message]
+def about_bio(update: Update, context: CallbackContext):
     args = context.args
+    bot = context.bot
+    message = update.effective_message
 
     user_id = extract_user(message, args)
-    if user_id:
-        user = context.bot.get_chat(user_id)
-    else:
-        user = message.from_user
-
-    info = USER_BIO.find_one({'_id': user.id})
+    user = bot.get_chat(user_id) if user_id else message.from_user
+    info = sql.get_user_bio(user.id)
 
     if info:
         update.effective_message.reply_text(
-            "*{}*:\n{}".format(user.first_name, escape_markdown(info["bio"])),
+            "*{}*:\n{}".format(user.first_name, escape_markdown(info)),
             parse_mode=ParseMode.MARKDOWN,
         )
     elif message.reply_to_message:
         username = user.first_name
         update.effective_message.reply_text(
-            "{} No details about him have been saved yet !".format(username)
+            f"{username} hasn't had a message set about themselves yet!"
         )
     else:
         update.effective_message.reply_text(
-            " Your bio  about you has been saved !"
+            "You haven't had a bio set about yourself yet!"
         )
-
-
-@typing_action
-def set_about_bio(update, context):
-    message = update.effective_message  # type: Optional[Message]
-    sender = update.effective_user  # type: Optional[User]
+    message = update.effective_message
     if message.reply_to_message:
         repl_message = message.reply_to_message
         user_id = repl_message.from_user.id
+
         if user_id == message.from_user.id:
             message.reply_text(
-                "Are you looking to change your own ... ?? That 's it."
+                "Ha, you can't set your own bio! You're at the mercy of others here..."
             )
             return
-        elif user_id == context.bot.id and sender.id not in DEV_USERS:
-            message.reply_text("Only DEV USERS can change my information.")
-            return
-        elif user_id == 1087968824:
-            message.reply_text("You cannot set anonymous user bio!")
+
+        sender_id = update.effective_user.id
+
+        if (
+            user_id == bot.id
+            and sender_id not in SUDO_USERS
+            and sender_id not in DEV_USERS
+        ):
+            message.reply_text(
+                "Erm... yeah, I only trust sudo users or developers to set my bio."
+            )
             return
 
         text = message.text
         # use python's maxsplit to only remove the cmd, hence keeping newlines.
         bio = text.split(None, 1)
+
         if len(bio) == 2:
             if len(bio[1]) < MAX_MESSAGE_LENGTH // 4:
-                USER_BIO.update_one(
-                    {'_id': user_id},
-                    {"$set": {'bio': bio[1]}},
-                    upsert=True)
+                sql.set_user_bio(user_id, bio[1])
                 message.reply_text(
-                    "{} bio has been successfully saved!".format(
-                        repl_message.from_user.first_name
-                    )
+                    "Updated {}'s bio!".format(repl_message.from_user.first_name)
                 )
             else:
                 message.reply_text(
-                    "About you {} Must stick to the letter! The number of characters you have just tried {} hm .".format(
+                    "A bio needs to be under {} characters! You tried to set {}.".format(
                         MAX_MESSAGE_LENGTH // 4, len(bio[1])
                     )
                 )
     else:
-        message.reply_text(
-            " His bio can only be saved if someone MESSAGE as a REPLY"
-        )
+        message.reply_text("Reply to someone's message to set their bio!")
+
+
+def set_about_bio(update: Update, context: CallbackContext):
+    message = update.effective_message
+    sender_id = update.effective_user.id
+    bot = context.bot
+
+    if message.reply_to_message:
+        repl_message = message.reply_to_message
+        user_id = repl_message.from_user.id
+        if user_id in (777000, 1087968824):
+            message.reply_text("Don't set bio for Telegram bots!")
+            return
+
+        if user_id == message.from_user.id:
+            message.reply_text(
+                "Ha, you can't set your own bio! You're at the mercy of others here..."
+            )
+            return
+
+        if user_id in [777000, 1087968824] and sender_id not in DEV_USERS:
+            message.reply_text("You are not authorised")
+            return
+
+        if user_id == bot.id and sender_id not in DEV_USERS:
+            message.reply_text("Erm... yeah, I only trust Eagle Union to set my bio.")
+            return
+
+        text = message.text
+        bio = text.split(
+            None, 1
+        )  # use python's maxsplit to only remove the cmd, hence keeping newlines.
+
+        if len(bio) == 2:
+            if len(bio[1]) < MAX_MESSAGE_LENGTH // 4:
+                sql.set_user_bio(user_id, bio[1])
+                message.reply_text(
+                    "Updated {}'s bio!".format(repl_message.from_user.first_name)
+                )
+            else:
+                message.reply_text(
+                    "Bio needs to be under {} characters! You tried to set {}.".format(
+                        MAX_MESSAGE_LENGTH // 4, len(bio[1])
+                    )
+                )
+    else:
+        message.reply_text("Reply to someone to set their bio!")
 
 
 def __user_info__(user_id):
-    bdata = USER_BIO.find_one({'_id': user_id})
-    if bdata:
-        bio = html.escape(bdata["bio"])
-    idata = USER_INFO.find_one({'_id': user_id})
-    if idata:
-        me = html.escape(idata["info"])
-
-    if bdata and idata:
-        return "<b>About user:</b>\n{me}\n\n<b>What others say:</b>\n{bio}".format(
-            me=me, bio=bio
-        )
-    elif bdata:
-        return "<b>What others say:</b>\n{}\n".format(bio)
-    elif idata:
-        return "<b>About user:</b>\n{}".format(me)
+    bio = html.escape(sql.get_user_bio(user_id) or "")
+    me = html.escape(sql.get_user_me_info(user_id) or "")
+    if bio and me:
+        return f"\n<b>About user:</b>\n{me}\n<b>What others say:</b>\n{bio}\n"
+    elif bio:
+        return f"\n<b>What others say:</b>\n{bio}\n"
+    elif me:
+        return f"\n<b>About user:</b>\n{me}\n"
     else:
-        return ""
+        return "\n"
 
 
 from tg_bot.modules.language import gs
 
-
 def get_help(chat):
     return gs(chat, "userinfo_help")
 
-
-__mod_name__ = "Bios/Abouts"
-
-SET_BIO_HANDLER = DisableAbleCommandHandler(
-    "setbio", set_about_bio, run_async=True
-)
+SET_BIO_HANDLER = DisableAbleCommandHandler("setbio", set_about_bio, run_async=True)
 GET_BIO_HANDLER = DisableAbleCommandHandler(
     "bio", about_bio, pass_args=True, run_async=True
 )
 
-SET_ABOUT_HANDLER = DisableAbleCommandHandler(
-    "setme", set_about_me, run_async=True
-)
+SET_ABOUT_HANDLER = DisableAbleCommandHandler("setme", set_about_me, run_async=True)
 GET_ABOUT_HANDLER = DisableAbleCommandHandler(
     "me", about_me, pass_args=True, run_async=True
 )
@@ -190,3 +212,7 @@ dispatcher.add_handler(SET_BIO_HANDLER)
 dispatcher.add_handler(GET_BIO_HANDLER)
 dispatcher.add_handler(SET_ABOUT_HANDLER)
 dispatcher.add_handler(GET_ABOUT_HANDLER)
+
+__mod_name__ = "Bios/Abouts"
+__command_list__ = ["setbio", "bio", "setme", "me"]
+__handlers__ = [SET_BIO_HANDLER, GET_BIO_HANDLER, SET_ABOUT_HANDLER, GET_ABOUT_HANDLER]

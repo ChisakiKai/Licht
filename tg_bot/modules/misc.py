@@ -186,7 +186,7 @@ def info(update: Update, context: CallbackContext):
         text += f"\nThis person is my owner"
         Nation_level_present = True
     elif user.id in DEV_USERS:
-        text += f"\nThis Person is a part of Eagle Union"
+        text += f"\nThis Person is a part of Zero Union"
         Nation_level_present = True
     elif user.id in SUDO_USERS:
         text += f"\nThe Nation level of this person is Royal"
@@ -218,25 +218,17 @@ def info(update: Update, context: CallbackContext):
 
     if INFOPIC:
         try:
-            profile = bot.get_user_profile_photos(user.id).photos[0][-1]
-            _file = bot.get_file(profile["file_id"])
-            _file.download(f"{user.id}.png")
-
-            message.reply_document(
-                document=open(f"{user.id}.png", "rb"),
-                caption=(text),
-                parse_mode=ParseMode.HTML,
-            )
-
-            os.remove(f"{user.id}.png")
-        # Incase user don't have profile pic, send normal text
-        except IndexError:
-            message.reply_text(
-                text, parse_mode=ParseMode.HTML, disable_web_page_preview=True
-            )
-
-    else:
-        message.reply_text(
+            profile = context.bot.get_user_profile_photos(user.id).photos[0][-1]
+        context.bot.sendChatAction(chat.id, "upload_photo")
+        context.bot.send_photo(
+            chat.id,
+            photo=profile,
+            caption=(text),
+            parse_mode=ParseMode.HTML,
+        )
+    except IndexError:
+        context.bot.sendChatAction(chat.id, "typing")
+        msg.reply_text(
             text, parse_mode=ParseMode.HTML, disable_web_page_preview=True
         )
 
@@ -343,6 +335,114 @@ def stats(update, context):
         )
 
 
+def covid(update, context):
+    message = update.effective_message
+    country = str(message.text[len(f"/covid ") :])
+    data = Covid(source="worldometers")
+
+    if country == "":
+        country = "world"
+        link = "https://www.worldometers.info/coronavirus"
+    elif country.lower() in ["south korea", "korea"]:
+        country = "s. korea"
+        link = "https://www.worldometers.info/coronavirus/country/south-korea"
+    else:
+        link = f"https://www.worldometers.info/coronavirus/country/{country}"
+    try:
+        c_case = data.get_status_by_country_name(country)
+    except Exception:
+        message.reply_text(
+            "An error have occured! Are you sure the country name is correct?"
+        )
+        return
+    total_tests = c_case["total_tests"]
+    if total_tests == 0:
+        total_tests = "N/A"
+    else:
+        total_tests = format_integer(c_case["total_tests"])
+
+    date = datetime.datetime.now().strftime("%d %b %Y")
+
+    output = (
+        f"<b>Corona Virus Statistics in {c_case['country']}</b>\n"
+        f"<b>on {date}</b>\n\n"
+        f"<b>Confirmed Cases :</b> <code>{format_integer(c_case['confirmed'])}</code>\n"
+        f"<b>Active Cases :</b> <code>{format_integer(c_case['active'])}</code>\n"
+        f"<b>Deaths :</b> <code>{format_integer(c_case['deaths'])}</code>\n"
+        f"<b>Recovered :</b> <code>{format_integer(c_case['recovered'])}</code>\n\n"
+        f"<b>New Cases :</b> <code>{format_integer(c_case['new_cases'])}</code>\n"
+        f"<b>New Deaths :</b> <code>{format_integer(c_case['new_deaths'])}</code>\n"
+        f"<b>Critical Cases :</b> <code>{format_integer(c_case['critical'])}</code>\n"
+        f"<b>Total Tests :</b> <code>{total_tests}</code>\n\n"
+        f"Data provided by <a href='{link}'>Worldometer</a>"
+    )
+
+    message.reply_text(
+        output, parse_mode=ParseMode.HTML, disable_web_page_preview=True
+    )
+
+
+def format_integer(number, thousand_separator="."):
+    def reverse(string):
+        string = "".join(reversed(string))
+        return string
+
+    s = reverse(str(number))
+    count = 0
+    result = ""
+    for char in s:
+        count = count + 1
+        if count % 3 == 0:
+            if len(s) == count:
+                result = char + result
+            else:
+                result = thousand_separator + char + result
+        else:
+            result = char + result
+    return result  
+  
+
+def paste(update, context):
+    msg = update.effective_message
+
+    if msg.reply_to_message and msg.reply_to_message.document:
+        file = context.bot.get_file(msg.reply_to_message.document)
+        file.download("file.txt")
+        text = codecs.open("file.txt", "r+", encoding="utf-8")
+        paste_text = text.read()
+        link = (
+            post(
+                "https://nekobin.com/api/documents",
+                json={"content": paste_text},
+            )
+            .json()
+            .get("result")
+            .get("key")
+        )
+        text = "**Pasted to Nekobin!!!**"
+        buttons = [
+            [
+                InlineKeyboardButton(
+                    text="View Link", url=f"https://nekobin.com/{link}"
+                ),
+                InlineKeyboardButton(
+                    text="View Raw",
+                    url=f"https://nekobin.com/raw/{link}",
+                ),
+            ]
+        ]
+        msg.reply_text(
+            text,
+            reply_markup=InlineKeyboardMarkup(buttons),
+            parse_mode=ParseMode.MARKDOWN,
+            disable_web_page_preview=True,
+        )
+        os.remove("file.txt")
+    else:
+        msg.reply_text("Give me a text file to paste on nekobin")
+        return
+
+        
 def ping(update: Update, _):
     msg = update.effective_message
     start_time = time.time()
