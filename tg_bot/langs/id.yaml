@@ -305,52 +305,52 @@ markdown_help_text: |
       Ingatlah bahwa pesan Anda <b> HARUS </b> berisi teks selain hanya tombol!
 
 misc_help: |
-      • `/id`*:* get the current group id. If used by replying to a message, gets that user's id.
-      • `/gifid`*:* reply to a gif to me to tell you its file ID.
-      • `/info`*:* get information about a user.
-      • `/markdownhelp`*:* quick summary of how markdown works in telegram - can only be called in private chats.
-      • `/ud <word>`*:* Type the word or expression you want to search use.
-      • `/urban <word>`*:* Same as /ud
-      • `/paste` - Do a paste at `nekobin.com`
-      • `/react`*:* Reacts with a random reaction
-      • `/weebify <text>`*:* returns a weebified text
-      • `/tr (language code)` as reply to a long message.
-      • `/time <query>`*:* Gives information about a timezone.
-      • `/cash`*:* currency converter
-        example syntax: /cash 1 USD INR
-      • `/cinfo`*:* get info about a user or a chat (uses @Pyrogram methods)
-      • `/getid`*:* get IDs of chat, user and chat message.
-      • `/spbinfo`*:* get info about a user from @Intellivoid's SpamProtection API
+      • `/id`*:* dapatkan id grup saat ini. Jika digunakan dengan membalas pesan, dapatkan id pengguna itu.
+      • `/gifid`*:* balas gif ke saya untuk memberi tahu Anda ID filenya.
+      • `/info`*:* mendapatkan informasi tentang pengguna.
+      • `/markdownhelp`*:* ringkasan singkat tentang bagaimana markdown bekerja di telegram - hanya dapat dipanggil dalam obrolan pribadi.
+      • `/ud <word>`*:* Ketik kata atau ekspresi yang ingin Anda gunakan pencarian.
+      • `/urban <word>`*:* Sama seoerti /ud
+      • `/paste` - Lakukan paste di `nekobin.com`
+      • `/react`*:* Bereaksi dengan reaksi acak
+      • `/weebify <text>`*:* mengembalikan teks weebified
+      • `/tr (language code)` sebagai balasan untuk pesan panjang.
+      • `/time <query>`*:* Memberikan informasi tentang zona waktu.
+      • `/cash`*:* konverter mata uang
+        contoh syntax: /cash 1 USD INR
+      • `/cinfo`*:* dapatkan info tentang pengguna atau obrolan (menggunakan metode @Pyrogram)
+      • `/getid`*:* dapatkan ID obrolan, pengguna, dan pesan obrolan.
+      • `/spbinfo`*:* dapatkan info tentang pengguna dari @ Intellivoid SpamProtection API
       ───────────────────────────────
       *Last.FM*
-      Share what you're what listening to with the help of this module!
-      *Available commands:*
-      • `/setuser <username>`*:* sets your last.fm username.
-      • `/clearuser`*:* removes your last.fm username from the bot's database.
-      • `/lastfm`*:* returns what you're scrobbling on last.fm.
+      Bagikan apa yang Anda dengarkan dengan bantuan modul ini!
+      *Perintah Tersedia:*
+      • `/setuser <username>`*:* setel nama pengguna last.fm Anda.
+      • `/clearuser`*:* menghapus nama pengguna last.fm Anda dari database bot.
+      • `/lastfm`*:* mengembalikan apa yang Anda cari di last.fm.
 
 muting_help: |
       *Khusus Admin:*
-       • `/mute <userhandle>`*:* silences a user. Can also be used as a reply, muting the replied to user.
-       • `/tmute <userhandle> x(m/h/d)`*:* mutes a user for x time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
-       • `/unmute <userhandle>`*:* unmutes a user. Can also be used as a reply, muting the replied to user.
+       • `/mute <userhandle>`*:* membungkam pengguna. Bisa juga digunakan sebagai balasan, membungkam pengguna yang dibalas.
+       • `/tmute <userhandle> x(m/h/d)`*:*membisukan pengguna selama x waktu. (melalui pegangan, atau balasan). `m` = `menit`, `h` = `jam`, `d` = `hari`.
+       • `/unmute <userhandle>`*:* mengaktifkan pengguna. Bisa juga digunakan sebagai balasan, membungkam pengguna yang dibalas.
 
 notes_help: |
-       • `/get <notename>`*:* get the note with this notename
-       • `#<notename>`*:* same as /get
-       • `/notes` or `/saved`*:* list all saved notes in this chat
-       • `/number` *:* Will pull the note of that number in the list.
-        If you would like to retrieve the contents of a note without any formatting, use `/get <notename> noformat`. This can
-        be useful when updating a current note.
+       • `/get <notename>`*:* dapatkan catatan dengan nama not ini
+       • `#<notename>`*:* sama seperti /get
+       • `/notes` or `/saved`*:* daftar semua catatan yang disimpan dalam obrolan ini
+       • `/number` *:* Akan menarik catatan nomor itu dalam daftar.
+        Jika Anda ingin mengambil konten catatan tanpa pemformatan apa pun, gunakan `/get <notename> noformat`. Ini bisa 
+        berguna saat memperbarui catatan saat ini.
 
         *Khusus Admin:*
-       • `/save <notename> <notedata>`*:* saves notedata as a note with name notename
-        A button can be added to a note by using standard markdown link syntax - the link should just be prepended with a
-         `buttonurl:` section, as such: `[somelink](buttonurl:example.com)`. Check `/markdownhelp` for more info.
-       • `/save <notename>`*:* save the replied message as a note with name notename
-       • `/clear <notename>`*:* clear note with this name
-       • `/removeallnotes`*:* removes all notes from the group
-       *Note:* Note names are case-insensitive, and they are automatically converted to lowercase before getting saved.
+       • `/save <notename> <notedata>`*:* menyimpan data notes sebagai catatan dengan nama notename
+        Tombol dapat ditambahkan ke catatan dengan menggunakan sintaks tautan markdown standar - tautan hanya boleh diawali dengan
+         `buttonurl:` bagian, Dengan demikian: `[somelink](buttonurl:example.com)`. Cek `/markdownhelp` untuk info lebih lanjut.
+       • `/save <notename>`*:* simpan pesan yang dibalas sebagai catatan dengan nama notename
+       • `/clear <notename>`*:* hapus catatan dengan nama ini
+       • `/removeallnotes`*:* menghapus semua catatan dari grup
+       *Note:* Nama catatan tidak membedakan huruf besar / kecil, dan secara otomatis diubah menjadi huruf kecil sebelum disimpan.
 
 purge_help: |
        *Khusus Admin:*
