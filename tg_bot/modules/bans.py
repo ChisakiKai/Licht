@@ -398,6 +398,7 @@ from tg_bot.modules.language import gs
 def get_help(chat):
     return gs(chat, "bans_help")
 
+
 BAN_HANDLER = CommandHandler(["ban", "sban"], ban, pass_args=True, run_async=True)
 TEMPBAN_HANDLER = CommandHandler(
     ["tban", "tempban"], temp_ban, pass_args=True, run_async=True
