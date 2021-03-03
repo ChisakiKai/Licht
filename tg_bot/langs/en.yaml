@@ -319,7 +319,6 @@ misc_help: |
       • `/paste` - Do a paste at `nekobin.com`
       • `/react`*:* Reacts with a random reaction
       • `/weebify <text>`*:* returns a weebified text
-      • `/wiki` text - Returns search from wikipedia for the input text.
       • `/tr (language code)` as reply to a long message.
       • `/time <query>`*:* Gives information about a timezone.
       • `/cash`*:* currency converter
@@ -399,6 +398,9 @@ warns_help: |
       • `/nowarn <keyword>`*:* stop a warning filter
       • `/warnlimit <num>`*:* set the warning limit
       • `/strongwarn <on/yes/off/no>`*:* If set to on, exceeding the warn limit will result in a ban. Else, will just kick.
+
+wikipedia_help: |
+      • `/wiki <text>`*:* Returns search from wikipedia for the input text.
 
 greetings_help: |
       *Admins only:*

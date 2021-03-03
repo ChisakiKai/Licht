@@ -394,6 +394,9 @@ warns_help: |
       • `/nowarn <keyword>`*:* hentikan filter peringatan
       • `/warnlimit <num>`*:* setel batas peringatan
       • `/strongwarn <on/yes/off/no>`*:* Jika disetel ke aktif, melebihi batas peringatan akan mengakibatkan larangan. Lain, hanya akan menendang.
+      
+wikipedia_help: |
+      • `/wiki <text>`*:* Returns search from wikipedia for the input text.  
 
 greetings_help: |
       *Khusus Admin:*
