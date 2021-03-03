@@ -215,12 +215,11 @@ def info(update: Update, context: CallbackContext):
             mod_info = mod.__user_info__(user.id, chat.id)
         if mod_info:
             text += "\n" + mod_info
-
-    if INFOPIC:
-        try:
-            profile = context.bot.get_user_profile_photos(user.id).photos[0][-1]
-        context.bot.sendChatAction(chat.id, "upload_photo")
-        context.bot.send_photo(
+                
+     try :       
+         profile = context.bot.get_user_profile_photos(user.id).photos[0][-1]
+         context.bot.sendChatAction(chat.id, "upload_photo")
+         context.bot.send_photo(
             chat.id,
             photo=profile,
             caption=(text),
@@ -230,7 +229,7 @@ def info(update: Update, context: CallbackContext):
         context.bot.sendChatAction(chat.id, "typing")
         msg.reply_text(
             text, parse_mode=ParseMode.HTML, disable_web_page_preview=True
-        )
+        )   
 
 
 @user_admin
