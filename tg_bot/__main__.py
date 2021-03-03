@@ -205,13 +205,13 @@ def start(update: Update, context: CallbackContext):
                             ),
                             InlineKeyboardButton(
                                 text=gs(chat.id, "updates_channel_link_btn"),
-                                url="https://t.me/KigyoUpdates",
+                                url="https://t.me/LichtUpdates",
                             ),
                         ],
                         [
                             InlineKeyboardButton(
                                 text=gs(chat.id, "src_btn"),
-                                url="https://github.com/ChisakiKai/Licht",
+                                url="https://github.com/Dank-del/EnterpriseALRobot",
                             )
                         ],
                     ]
