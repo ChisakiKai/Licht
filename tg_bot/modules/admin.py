@@ -5,9 +5,9 @@ from telegram.error import BadRequest
 from telegram.ext import CallbackContext, CommandHandler, Filters, run_async
 from telegram.utils.helpers import mention_html
 
-from KaiRoboto import SUDO_USERS, dispatcher
-from KaiRoboto.modules.disable import DisableAbleCommandHandler
-from KaiRoboto.modules.helper_funcs.chat_status import (
+from tg_bot import SUDO_USERS, dispatcher
+from tg_bot.modules.disable import DisableAbleCommandHandler
+from tg_bot.modules.helper_funcs.chat_status import (
     bot_admin,
     can_pin,
     can_promote,
@@ -16,12 +16,12 @@ from KaiRoboto.modules.helper_funcs.chat_status import (
     ADMIN_CACHE,
 )
 
-from KaiRoboto.modules.helper_funcs.extraction import (
+from tg_bot.modules.helper_funcs.extraction import (
     extract_user,
     extract_user_and_text,
 )
-from KaiRoboto.modules.log_channel import loggable
-from KaiRoboto.modules.helper_funcs.alternate import send_message
+from tg_bot.modules.log_channel import loggable
+from tg_bot.modules.helper_funcs.alternate import send_message
 
 
 @run_async
@@ -42,7 +42,7 @@ def promote(update: Update, context: CallbackContext) -> str:
 
     if (
         not (promoter.can_promote_members or promoter.status == "creator")
-        and user.id not in DRAGONS
+        and user.id not in SUDO_USERS
     ):
         message.reply_text("You don't have the necessary rights to do that!")
         return
@@ -464,19 +464,8 @@ def adminlist(update, context):
     except BadRequest:  # if original message is deleted
         return
 
-
-__help__ = """
- • `/admins`*:* list of admins in the chat
-
-*Admins only:*
- • `/pin`*:* silently pins the message replied to - add `'loud'` or `'notify'` to give notifs to users
- • `/unpin`*:* unpins the currently pinned message
- • `/invitelink`*:* gets invitelink
- • `/promote`*:* promotes the user replied to
- • `/demote`*:* demotes the user replied to
- • `/title <title here>`*:* sets a custom title for an admin that the bot promoted
- • `/admincache`*:* force refresh the admins list
-"""
+def get_help(chat):
+    return gs(chat, "admin_help")
 
 ADMINLIST_HANDLER = DisableAbleCommandHandler("admins", adminlist)
 
