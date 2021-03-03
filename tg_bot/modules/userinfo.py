@@ -11,10 +11,6 @@ from tg_bot.modules.helper_funcs.alternate import typing_action
 from tg_bot.modules.helper_funcs.extraction import extract_user
 
 
-USER_INFO = get_collection("USER_INFO")
-USER_BIO = get_collection("USER_BIO")
-
-
 @typing_action
 def about_me(update, context):
     message = update.effective_message  # type: Optional[Message]
