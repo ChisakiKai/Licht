@@ -400,6 +400,8 @@ warns_help: |
       • `/strongwarn <on/yes/off/no>`*:* If set to on, exceeding the warn limit will result in a ban. Else, will just kick.
            
 wikipedia_help: |
+      Wikipedia is an online encyclopedia and, as a means to that end, an online community of individuals interested in building and using a high-quality encyclopedia in a spirit of mutual respect. 
+      Therefore, there are certain things that Wikipedia is not.
       • `/wiki <text>`*:* Returns search from wikipedia for the input text.
       
 greetings_help: |
