@@ -48,4 +48,5 @@ For queries or any issues regarding the bot please open an issue ticket or visit
 
 + [PaulSonOfLars](https://github.com/PaulSonOfLars). This repo was just reamped to suit an Anime-centric community. All original credits go to Paul and his dedication, Without his efforts, this fork would not have been possible!
 + [Dank-del](https://github.com/Dank-del).This repo fork from bot [Kigyō](https://t.me/kigyorobot).
+
 Should any be missing kindly let us know at [Zero Union](https://t.me/ZeroBotSupport) or simply submit a pull request on the readme.
