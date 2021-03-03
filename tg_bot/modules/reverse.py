@@ -7,21 +7,21 @@ from urllib.error import URLError, HTTPError
 from bs4 import BeautifulSoup
 
 from typing import List
-from telegram import ParseMode, InputMediaPhoto, Update, Bot, TelegramError
-from telegram.ext import run_async
+from telegram import InputMediaPhoto, TelegramError
 
 from tg_bot import dispatcher
 from tg_bot.modules.disable import DisableAbleCommandHandler
-from tg_bot.modules.helper_funcs.chat_status import is_user_admin, user_admin
-
-
+from tg_bot.modules.helper_funcs.chat_status import(
+   is_user_admin
+   user_admin
+)   
+   
 opener = urllib.request.build_opener()
 useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.38 Safari/537.36"
 # useragent = 'Mozilla/5.0 (Linux; Android 6.0.1; SM-G920V Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36'
 opener.addheaders = [("User-agent", useragent)]
 
 
-@run_async
 def reverse(bot: Bot, update: Update, args: List[str]):
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
