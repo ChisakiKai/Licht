@@ -32,7 +32,7 @@ from tg_bot import (
     INFOPIC,
     sw,
 )
-from tg_bot.__main__ import STATS, USER_INFO, TOKEN, GDPR
+from tg_bot.__main__ import STATS, USER_INFO, TOKEN, 
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from tg_bot.modules.helper_funcs.chat_status import user_admin, sudo_plus
 from tg_bot.modules.helper_funcs.alternate import send_action, typing_action
@@ -505,24 +505,6 @@ def ping(update: Update, _):
         "*Pong!!!*\n`{}ms`".format(ping_time), parse_mode=ParseMode.MARKDOWN
     )
 
-@typing_action
-def gdpr(update, context):
-    update.effective_message.reply_text("Deleting identifiable data...")
-    for mod in GDPR:
-        mod.__gdpr__(update.effective_user.id)
-
-    update.effective_message.reply_text(
-        "Your personal data has been deleted.\n\nNote that this will not unban "
-        f"you from any chats, as that is telegram data, not {dispatcher.bot.first_name} data. "
-        "Flooding, warns, and gbans are also preserved, as of "
-        "[this](https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/right-to-erasure/), "
-        "which clearly states that the right to erasure does not apply "
-        '"for the performance of a task carried out in the public interest", as is '
-        "the case for the aforementioned pieces of data.",
-        parse_mode=ParseMode.MARKDOWN,
-        disable_web_page_preview=True
-    )
-
 
 def get_help(chat):
     return gs(chat, "extra_help")
@@ -543,7 +525,6 @@ PING_HANDLER = DisableAbleCommandHandler("ping", ping, run_async=True)
 RAM_HANDLER = CommandHandler("ram", ram, run_async=True)
 COVID_HANDLER = CommandHandler("covid", covid, run_async=True)
 PASTE_HANDLER = CommandHandler("paste", paste, run_async=True)
-GDPR_HANDLER = CommandHandler("gdpr", gdpr, filters=Filters.private, run_async=True)
 dispatcher.add_handler(ID_HANDLER)
 dispatcher.add_handler(GIFID_HANDLER)
 dispatcher.add_handler(INFO_HANDLER)
@@ -555,10 +536,9 @@ dispatcher.add_handler(PING_HANDLER)
 dispatcher.add_handler(RAM_HANDLER)
 dispatcher.add_handler(COVID_HANDLER)
 dispatcher.add_handler(PASTE_HANDLER)
-dispatcher.add_handler(GDPR_HANDLER)
 
 __mod_name__ = "Extra"
-__command_list__ = ["id", "info", "echo", "ping", "covid", "paste", "gdpr"]
+__command_list__ = ["id", "info", "echo", "ping", "covid", "paste"]
 __handlers__ = [
     ID_HANDLER,
     GIFID_HANDLER,
@@ -569,5 +549,4 @@ __handlers__ = [
     PING_HANDLER,
     COVID_HANDLER,
     PASTE_HANDLER,
-    GDPR_HANDLER,
 ]
