@@ -9,7 +9,11 @@ from telegram.ext.dispatcher import run_async, CallbackContext
 import random
 import tg_bot.modules.sql.users_sql as sql
 from tg_bot.modules.helper_funcs.filters import CustomFilters
-from tg_bot import dispatcher, OWNER_ID, LOGGER
+from tg_bot import (
+     dispatcher, 
+     log,
+     OWNER_ID, 
+)
 from tg_bot.modules.disable import DisableAbleCommandHandler
 USERS_GROUP = 4
 
