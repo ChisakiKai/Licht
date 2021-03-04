@@ -492,7 +492,7 @@ dispatcher.add_handler(COVID_HANDLER)
 dispatcher.add_handler(PASTE_HANDLER)
 
 __mod_name__ = "Misc"
-__command_list__ = ["id", "info", "echo", "ping", "covid, "paste"]
+__command_list__ = ["id", "info", "echo", "ping", "covid", "paste"]
 __handlers__ = [
     ID_HANDLER,
     GIFID_HANDLER,
