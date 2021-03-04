@@ -343,6 +343,7 @@ def stats(update, context):
         )
 
 
+@typing_action
 def covid(update, context):
     message = update.effective_message
     country = str(message.text[len(f"/covid ") :])
