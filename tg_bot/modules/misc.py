@@ -189,10 +189,10 @@ def info(update: Update, context: CallbackContext):
         text += f"\nThis Person is a part of Zero Union"
         Nation_level_present = True
     elif user.id in SUDO_USERS:
-        text += f"\nThe Nation level of this person is Royal"
+        text += f"\nThe Nation level of this person is Senpai"
         Nation_level_present = True
     elif user.id in SUPPORT_USERS:
-        text += f"\nThe Nation level of this person is Sakura"
+        text += f"\nThe Nation level of this person is Sensei"
         Nation_level_present = True
     elif user.id in SARDEGNA_USERS:
         text += f"\nThe Nation level of this person is Sardegna"
@@ -215,21 +215,30 @@ def info(update: Update, context: CallbackContext):
             mod_info = mod.__user_info__(user.id, chat.id)
         if mod_info:
             text += "\n" + mod_info
-                
-     try :       
-         profile = context.bot.get_user_profile_photos(user.id).photos[0][-1]
-         context.bot.sendChatAction(chat.id, "upload_photo")
-         context.bot.send_photo(
-            chat.id,
-            photo=profile,
-            caption=(text),
-            parse_mode=ParseMode.HTML,
-        )
-    except IndexError:
-        context.bot.sendChatAction(chat.id, "typing")
-        msg.reply_text(
+
+    if INFOPIC:
+        try:
+            profile = bot.get_user_profile_photos(user.id).photos[0][-1]
+            _file = bot.get_file(profile["file_id"])
+            _file.download(f"{user.id}.png")
+
+            message.reply_document(
+                document=open(f"{user.id}.png", "rb"),
+                caption=(text),
+                parse_mode=ParseMode.HTML,
+            )
+
+            os.remove(f"{user.id}.png")
+        # Incase user don't have profile pic, send normal text
+        except IndexError:
+            message.reply_text(
+                text, parse_mode=ParseMode.HTML, disable_web_page_preview=True
+            )
+
+    else:
+        message.reply_text(
             text, parse_mode=ParseMode.HTML, disable_web_page_preview=True
-        )   
+        ) 
 
 
 @user_admin
