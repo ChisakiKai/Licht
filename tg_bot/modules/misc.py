@@ -25,6 +25,7 @@ from tg_bot import (
 from tg_bot.__main__ import STATS, USER_INFO, TOKEN
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from tg_bot.modules.helper_funcs.chat_status import user_admin, sudo_plus
+from tg_bot.modules.helper_funcs.alternate import send_action, typing_action
 from tg_bot.modules.helper_funcs.extraction import extract_user
 import tg_bot.modules.sql.users_sql as sql
 from tg_bot.modules.language import gs
@@ -344,6 +345,7 @@ def stats(update, context):
         )
 
 
+@typing_action
 def covid(update, context):
     message = update.effective_message
     country = str(message.text[len(f"/covid ") :])
