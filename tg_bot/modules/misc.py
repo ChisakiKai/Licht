@@ -1,4 +1,5 @@
 import html
+import codecs
 import re, os
 import time
 from typing import List
