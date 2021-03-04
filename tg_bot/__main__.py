@@ -45,7 +45,6 @@ from tg_bot import (
 from tg_bot.modules import ALL_MODULES
 from tg_bot.modules.helper_funcs.chat_status import is_user_admin
 from tg_bot.modules.helper_funcs.misc import paginate_modules
-from tg_bot.modules.helper_funcs.alternate import typing_action
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from tg_bot.modules.language import gs
 
@@ -80,8 +79,6 @@ DATA_EXPORT = []
 CHAT_SETTINGS = {}
 USER_SETTINGS = {}
 
-GDPR = {}
-
 for module_name in ALL_MODULES:
     imported_module = importlib.import_module("tg_bot.modules." + module_name)
     if not hasattr(imported_module, "__mod_name__"):
@@ -102,9 +99,6 @@ for module_name in ALL_MODULES:
     if hasattr(imported_module, "__stats__"):
         STATS.append(imported_module)
     
-    if hasattr(imported_module, "__gdpr__"):
-        GDPR.append(imported_module)
-
     if hasattr(imported_module, "__user_info__"):
         USER_INFO.append(imported_module)
 
