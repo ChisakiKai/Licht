@@ -317,6 +317,8 @@ misc_help: |
       • `/ud <word>`*:* Type the word or expression you want to search use.
       • `/urban <word>`*:* Same as /ud
       • `/paste` - Do a paste at `nekobin.com`
+      • `/wiki <text>`*:* Returns search from wikipedia for the input text.
+      • `/covid <country name>`*:* Give stats about COVID-19.
       • `/react`*:* Reacts with a random reaction
       • `/weebify <text>`*:* returns a weebified text
       • `/tr (language code)` as reply to a long message.
@@ -398,11 +400,6 @@ warns_help: |
       • `/nowarn <keyword>`*:* stop a warning filter
       • `/warnlimit <num>`*:* set the warning limit
       • `/strongwarn <on/yes/off/no>`*:* If set to on, exceeding the warn limit will result in a ban. Else, will just kick.
-
-wikipedia_help: |
-      Wikipedia is an online encyclopedia and, as a means to that end, an online community of individuals interested in building and using a high-quality encyclopedia in a spirit of mutual respect. 
-      Therefore, there are certain things that Wikipedia is not.
-      • `/wiki <text>`*:* Returns search from wikipedia for the input text.
 
 greetings_help: |
       *Admins only:*
