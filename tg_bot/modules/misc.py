@@ -343,7 +343,6 @@ def stats(update, context):
         )
 
 
-@typing_action
 def covid(update, context):
     message = update.effective_message
     country = str(message.text[len(f"/covid ") :])
@@ -477,6 +476,11 @@ MD_HELP_HANDLER = CommandHandler(
 STATS_HANDLER = CommandHandler("stats", stats, run_async=True)
 PING_HANDLER = DisableAbleCommandHandler("ping", ping, run_async=True)
 RAM_HANDLER = CommandHandler("ram", ram, run_async=True)
+)
+# SRC_HANDLER = CommandHandler("source", src, filters=Filters.private)
+COVID_HANDLER = CommandHandler("covid", covid, run_async=True)
+PASTE_HANDLER = CommandHandler("paste", paste, run_async=True)
+
 dispatcher.add_handler(ID_HANDLER)
 dispatcher.add_handler(GIFID_HANDLER)
 dispatcher.add_handler(INFO_HANDLER)
@@ -485,6 +489,9 @@ dispatcher.add_handler(MD_HELP_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(PING_HANDLER)
 dispatcher.add_handler(RAM_HANDLER)
+# dispatcher.add_handler(SRC_HANDLER)
+dispatcher.add_handler(COVID_HANDLER)
+dispatcher.add_handler(PASTE_HANDLER)
 
 __mod_name__ = "Misc"
 __command_list__ = ["id", "info", "echo", "ping"]
@@ -496,4 +503,6 @@ __handlers__ = [
     MD_HELP_HANDLER,
     STATS_HANDLER,
     PING_HANDLER,
+    COVID_HANDLER,
+    PASTE_HANDLER
 ]
