@@ -311,8 +311,10 @@ misc_help: |
       • `/info`*:* mendapatkan informasi tentang pengguna.
       • `/markdownhelp`*:* ringkasan singkat tentang bagaimana markdown bekerja di telegram - hanya dapat dipanggil dalam obrolan pribadi.
       • `/ud <word>`*:* Ketik kata atau ekspresi yang ingin Anda gunakan pencarian.
-      • `/urban <word>`*:* Sama seoerti /ud
-      • `/paste` - Lakukan paste di `nekobin.com`
+      • `/urban <word>`*:* Sama seperti /ud
+      • `/paste` - Lakukan tempel di`nekobin.com`
+      • `/wiki <text>`*:* Mengembalikan penelusuran dari wikipedia untuk teks masukan.
+      • `/covid <country name>`*:* Memberikan statistik tentang COVID-19.
       • `/react`*:* Bereaksi dengan reaksi acak
       • `/weebify <text>`*:* mengembalikan teks weebified
       • `/tr (language code)` sebagai balasan untuk pesan panjang.
