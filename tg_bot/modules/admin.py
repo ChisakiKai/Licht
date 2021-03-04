@@ -22,6 +22,7 @@ from tg_bot.modules.helper_funcs.extraction import (
 )
 from tg_bot.modules.log_channel import loggable
 from tg_bot.modules.helper_funcs.alternate import send_message
+from tg_bot.modules.language import gs
 
 
 @connection_status
@@ -452,10 +453,8 @@ def adminlist(update, context):
     except BadRequest:  # if original message is deleted
         return
 
-
 def get_help(chat):
     return gs(chat, "admin_help")
-
 
 ADMINLIST_HANDLER = DisableAbleCommandHandler("admins", adminlist)
 
