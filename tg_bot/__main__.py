@@ -65,7 +65,7 @@ HELP_STRINGS = f"""
  \nClick on the buttons below to get documentation about specific modules!"""
 
 
-LICHT_IMG = "https://telegra.ph/file/ff7863b54f06515193bab.mp4"
+LICHT_IMG = "https://i.ibb.co/mTBV6fz/Licht-Ability-Anime.gif"
 
 
 IMPORTED = {}
