@@ -32,7 +32,7 @@ from tg_bot import (
     INFOPIC,
     sw,
 )
-from tg_bot.__main__ import STATS, USER_INFO, TOKEN, GDPR,
+from tg_bot.__main__ import STATS, USER_INFO, TOKEN, GDPR
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from tg_bot.modules.helper_funcs.chat_status import user_admin, sudo_plus
 from tg_bot.modules.helper_funcs.alternate import send_action, typing_action
