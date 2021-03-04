@@ -9,12 +9,12 @@ import wikipedia
 from covid import Covid
 from requests import get, post
 from telegram import (
-     Update, 
-     MessageEntity, 
-     ParseMode,
-     InlineKeyboardButton,
-     InlineKeyboardMarkup,
-     TelegramError,
+    Update,
+    MessageEntity,
+    ParseMode,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    TelegramError,
 )
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler, Filters, CallbackContext
@@ -549,5 +549,5 @@ __handlers__ = [
     STATS_HANDLER,
     PING_HANDLER,
     COVID_HANDLER,
-    PASTE_HANDLER
+    PASTE_HANDLER,
 ]
