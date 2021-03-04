@@ -32,7 +32,7 @@ from tg_bot import (
     INFOPIC,
     sw,
 )
-from tg_bot.__main__ import STATS, USER_INFO, TOKEN, GDPR
+from tg_bot.__main__ import STATS, USER_INFO, TOKEN, GDPR,
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from tg_bot.modules.helper_funcs.chat_status import user_admin, sudo_plus
 from tg_bot.modules.helper_funcs.alternate import send_action, typing_action
@@ -543,7 +543,7 @@ PING_HANDLER = DisableAbleCommandHandler("ping", ping, run_async=True)
 RAM_HANDLER = CommandHandler("ram", ram, run_async=True)
 COVID_HANDLER = CommandHandler("covid", covid, run_async=True)
 PASTE_HANDLER = CommandHandler("paste", paste, run_async=True)
-GDPR_HANDLER = CommandHandler("gdpr", gdpr, filters=Filters.private)
+GDPR_HANDLER = CommandHandler("gdpr", gdpr, filters=Filters.private, run_async=True)
 dispatcher.add_handler(ID_HANDLER)
 dispatcher.add_handler(GIFID_HANDLER)
 dispatcher.add_handler(INFO_HANDLER)
