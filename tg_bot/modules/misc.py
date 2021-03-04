@@ -8,7 +8,14 @@ import requests
 import wikipedia
 from covid import Covid
 from requests import get, post
-from telegram import Update, MessageEntity, ParseMode
+from telegram import (
+     Update, 
+     MessageEntity, 
+     ParseMode,
+     InlineKeyboardButton,
+     InlineKeyboardMarkup,
+     TelegramError,
+)
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler, Filters, CallbackContext
 from telegram.utils.helpers import mention_html
