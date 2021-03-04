@@ -45,6 +45,7 @@ from tg_bot import (
 from tg_bot.modules import ALL_MODULES
 from tg_bot.modules.helper_funcs.chat_status import is_user_admin
 from tg_bot.modules.helper_funcs.misc import paginate_modules
+from tg_bot.modules.helper_funcs.alternate import typing_action
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from tg_bot.modules.language import gs
 
