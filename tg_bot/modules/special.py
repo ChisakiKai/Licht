@@ -56,7 +56,7 @@ def snipe(update: Update, context: CallbackContext):
 from tg_bot.modules.language import gs
 
 def get_help(chat):
-    return gs(chat, "warns_help")
+    return gs(chat, "special_help")
 
 __mod_name__ = "Special"
 
