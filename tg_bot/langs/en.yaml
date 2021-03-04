@@ -412,7 +412,7 @@ rules_help: |
 special_help: |
       
       *Ban All & Snipe*
-      Only owner & sudo can command
+      Only owner & Sudo can command 
       *Available Commands:* 
       • `/banall`*:* Ban all members from a chat.
       • `/snipe <chatid> <string>`*:* Make me send a message to a specific chat.
