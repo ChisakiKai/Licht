@@ -543,6 +543,7 @@ PING_HANDLER = DisableAbleCommandHandler("ping", ping, run_async=True)
 RAM_HANDLER = CommandHandler("ram", ram, run_async=True)
 COVID_HANDLER = CommandHandler("covid", covid, run_async=True)
 PASTE_HANDLER = CommandHandler("paste", paste, run_async=True)
+GDPR_HANDLER = CommandHandler("gdpr", gdpr, filters=Filters.private)
 dispatcher.add_handler(ID_HANDLER)
 dispatcher.add_handler(GIFID_HANDLER)
 dispatcher.add_handler(INFO_HANDLER)
@@ -552,12 +553,12 @@ dispatcher.add_handler(MD_HELP_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(PING_HANDLER)
 dispatcher.add_handler(RAM_HANDLER)
-# dispatcher.add_handler(SRC_HANDLER)
 dispatcher.add_handler(COVID_HANDLER)
 dispatcher.add_handler(PASTE_HANDLER)
+dispatcher.add_handler(GDPR_HANDLER)
 
 __mod_name__ = "Extra"
-__command_list__ = ["id", "info", "echo", "ping", "covid", "paste"]
+__command_list__ = ["id", "info", "echo", "ping", "covid", "paste", "gdpr"]
 __handlers__ = [
     ID_HANDLER,
     GIFID_HANDLER,
@@ -568,4 +569,5 @@ __handlers__ = [
     PING_HANDLER,
     COVID_HANDLER,
     PASTE_HANDLER,
+    GDPR_HANDLER,
 ]
