@@ -5,6 +5,7 @@ import time
 from typing import List
 
 import requests
+import wikipedia
 from covid import Covid
 from telegram import Update, MessageEntity, ParseMode
 from telegram.error import BadRequest
@@ -301,6 +302,40 @@ def markdown_help(update: Update, _):
     )
 
 
+def wiki(update, context):
+    kueri = re.split(pattern="wiki", string=update.effective_message.text)
+    wikipedia.set_lang("en")
+    if len(str(kueri[1])) == 0:
+        update.effective_message.reply_text("Enter keywords!")
+    else:
+        try:
+            pertama = update.effective_message.reply_text("🔄 Loading...")
+            keyboard = InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="🔧 More Info...",
+                            url=wikipedia.page(kueri).url,
+                        )
+                    ]
+                ]
+            )
+            context.bot.editMessageText(
+                chat_id=update.effective_chat.id,
+                message_id=pertama.message_id,
+                text=wikipedia.summary(kueri, sentences=10),
+                reply_markup=keyboard,
+            )
+        except wikipedia.PageError as e:
+            update.effective_message.reply_text(f"⚠ Error: {e}")
+        except BadRequest as et:
+            update.effective_message.reply_text(f"⚠ Error: {et}")
+        except wikipedia.exceptions.DisambiguationError as eet:
+            update.effective_message.reply_text(
+                f"⚠ Error\n There are too many query! Express it more!\nPossible query result:\n{eet}"
+            )
+
+
 @sudo_plus
 def stats(update, context):
     uptime = datetime.datetime.fromtimestamp(boot_time()).strftime("%Y-%m-%d %H:%M:%S")
@@ -346,7 +381,6 @@ def stats(update, context):
         )
 
 
-@typing_action
 def covid(update, context):
     message = update.effective_message
     country = str(message.text[len(f"/covid ") :])
@@ -471,6 +505,7 @@ def get_help(chat):
 ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True, run_async=True)
 GIFID_HANDLER = DisableAbleCommandHandler("gifid", gifid, run_async=True)
 INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True, run_async=True)
+WIKI_HANDLER = DisableAbleCommandHandler("wiki", wiki, run_async=True)
 ECHO_HANDLER = DisableAbleCommandHandler(
     "echo", echo, filters=Filters.chat_type.groups, run_async=True
 )
@@ -479,13 +514,13 @@ MD_HELP_HANDLER = CommandHandler(
 )
 STATS_HANDLER = CommandHandler("stats", stats, run_async=True)
 PING_HANDLER = DisableAbleCommandHandler("ping", ping, run_async=True)
-RAM_HANDLER = CommandHandler("ram", ram, run_async=True)
-# SRC_HANDLER = CommandHandler("source", src, filters=Filters.private)
+RAM_HANDLER = CommandHandler("ram", ram, run_async=True).
 COVID_HANDLER = CommandHandler("covid", covid, run_async=True)
 PASTE_HANDLER = CommandHandler("paste", paste, run_async=True)
 dispatcher.add_handler(ID_HANDLER)
 dispatcher.add_handler(GIFID_HANDLER)
 dispatcher.add_handler(INFO_HANDLER)
+dispatcher.add_handler(WIKI_HANDLER)
 dispatcher.add_handler(ECHO_HANDLER)
 dispatcher.add_handler(MD_HELP_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
