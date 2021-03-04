@@ -514,7 +514,7 @@ MD_HELP_HANDLER = CommandHandler(
 )
 STATS_HANDLER = CommandHandler("stats", stats, run_async=True)
 PING_HANDLER = DisableAbleCommandHandler("ping", ping, run_async=True)
-RAM_HANDLER = CommandHandler("ram", ram, run_async=True).
+RAM_HANDLER = CommandHandler("ram", ram, run_async=True)
 COVID_HANDLER = CommandHandler("covid", covid, run_async=True)
 PASTE_HANDLER = CommandHandler("paste", paste, run_async=True)
 dispatcher.add_handler(ID_HANDLER)
