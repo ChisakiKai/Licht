@@ -332,7 +332,7 @@ markdown_help_text: |
 
       Keep in mind that your message <b>MUST</b> contain some text other than just a button!
 
-misc_help: |
+extra_help: |
 
       • `/id`*:* get the current group id. If used by replying to a message, gets that user's id.
       • `/gifid`*:* reply to a gif to me to tell you its file ID.
