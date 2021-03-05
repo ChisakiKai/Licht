@@ -65,7 +65,7 @@ HELP_STRINGS = f"""
  \nClick on the buttons below to get documentation about specific modules!"""
 
 
-LICHT_IMG = "https://i.ibb.co/1sgLnnf/1c88ee4942bd6febe365b11ddb23fb29-1.gif"
+LICHT_IMG = "https://i.ibb.co/p1B7crK/animation-gif-1.gif"
 
 
 IMPORTED = {}
