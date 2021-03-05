@@ -56,19 +56,16 @@ You can find the list of available commands with /help.
 """
 
 HELP_STRINGS = f"""
-Hello there! My name is *{dispatcher.bot.first_name}*. A part of *Zero Union*.
-I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of \
-the things I can help you with.
-*Main* commands available:
- • /start: Starts me, can be used to check I'm alive or not.
- • /help: PM's you this message.
- • /settings:
+*Main commands available:* [.](https://i.ibb.co/hCWYZFX/100038600601-96391.jpg)
+ × /start: Starts me, can be used to check I'm alive or not.
+ × /help: PM's you this message.
+ × /settings:
    - in PM: will send you your settings for all supported modules.
    - in a group: will redirect you to pm, with all that chat's settings.
  \nClick on the buttons below to get documentation about specific modules!"""
 
 
-LICHT_IMG = "https://telegra.ph/file/6c990b23254a5f04dba4d.jpg"
+LICHT_IMG = "https://i.ibb.co/1sgLnnf/1c88ee4942bd6febe365b11ddb23fb29-1.gif"
 
 
 IMPORTED = {}
@@ -101,7 +98,7 @@ for module_name in ALL_MODULES:
 
     if hasattr(imported_module, "__stats__"):
         STATS.append(imported_module)
-
+    
     if hasattr(imported_module, "__user_info__"):
         USER_INFO.append(imported_module)
 
@@ -180,8 +177,8 @@ def start(update: Update, context: CallbackContext):
 
         else:
             first_name = update.effective_user.first_name
-            update.effective_message.reply_photo(
-                photo=LICHT_IMG,
+            update.effective_message.reply_animation(
+                animation=LICHT_IMG,
                 caption=gs(chat.id, "pm_start_text").format(
                     escape_markdown(first_name),
                     escape_markdown(context.bot.first_name),

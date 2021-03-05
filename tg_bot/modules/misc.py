@@ -507,7 +507,7 @@ def ping(update: Update, _):
 
 
 def get_help(chat):
-    return gs(chat, "misc_help")
+    return gs(chat, "extra_help")
 
 
 ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True, run_async=True)
@@ -534,11 +534,10 @@ dispatcher.add_handler(MD_HELP_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(PING_HANDLER)
 dispatcher.add_handler(RAM_HANDLER)
-# dispatcher.add_handler(SRC_HANDLER)
 dispatcher.add_handler(COVID_HANDLER)
 dispatcher.add_handler(PASTE_HANDLER)
 
-__mod_name__ = "Misc"
+__mod_name__ = "Extra"
 __command_list__ = ["id", "info", "echo", "ping", "covid", "paste"]
 __handlers__ = [
     ID_HANDLER,
