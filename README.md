@@ -21,7 +21,7 @@ A modular telegram Python bot running on python3 with an sqlalchemy database.
 
 Originally a [Kigyō](https://t.me/kigyorobot) fork - Licht has evolved further and was built to be more useful for Anime Chats.
 
-Can be found on telegram as [Licht Bach](https://t.me/LichtRobot).
+Can be found on telegram as [Licht](https://t.me/LichtRobot).
 
 The Support group can be reached out to at [Zero Union](https://t.me/ZeroBotSupport), where you can ask for help setting up your bot, discover/request new features, report bugs, and stay in the loop whenever a new update is available.
 
@@ -46,7 +46,10 @@ For queries or any issues regarding the bot please open an issue ticket or visit
 
 ## Credits:
 
-+ [PaulSonOfLars](https://github.com/PaulSonOfLars). This repo was just reamped to suit an Anime-centric community. All original credits go to Paul and his dedication, Without his efforts, this fork would not have been possible!
++ [PaulSonOfLars](https://github.com/PaulSonOfLars). This repo was just reamped to suit an Anime-centric community. All original credits go to Paul and his dedication.
 + [Dank-del](https://github.com/Dank-del).This repo fork from bot [Kigyō](https://t.me/kigyorobot).
++ [Sawada Tsunayoshi](https://github com/TsunayoshiSawada)
++ [Pokurt](https://github.com/pokurt)
++ [Userbotindo](https://github.com/userbotindo)
 
 Should any be missing kindly let us know at [Zero Union](https://t.me/ZeroBotSupport) or simply submit a pull request on the readme.
