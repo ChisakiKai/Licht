@@ -48,7 +48,7 @@ For queries or any issues regarding the bot please open an issue ticket or visit
 
 + [PaulSonOfLars](https://github.com/PaulSonOfLars). This repo was just reamped to suit an Anime-centric community. All original credits go to Paul and his dedication.
 + [Dank-del](https://github.com/Dank-del).This repo fork from bot [Kigyō](https://t.me/kigyorobot).
-+ [SawadaTsunayoshi](https://github com/TsunayoshiSawada)
++ [SawadaTsunayoshi](https://github.com/TsunayoshiSawada)
 + [Pokurt](https://github.com/pokurt)
 + [Userbotindo](https://github.com/userbotindo)
 
