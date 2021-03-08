@@ -1,5 +1,6 @@
 future
 emoji
+lxml
 beautifulsoup4
 requests
 covid
@@ -8,6 +9,7 @@ python-telegram-bot==13.1
 psycopg2-binary
 feedparser
 markdown2
+git+https://github.com/starry69/python-markdown2.git
 spongemock
 tswift
 zalgo-text
@@ -34,3 +36,5 @@ Intellivoid-SPB
 rich
 psutil
 humanize
+ujson
+jikanpy
