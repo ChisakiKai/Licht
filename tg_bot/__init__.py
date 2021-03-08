@@ -107,11 +107,7 @@ try:
     REDIS.ping()
     LOGGER.info("Your redis server is now alive!")
 
-updater = tg.Updater(
-    TOKEN,
-    workers=min(32, os.cpu_count() + 4),
-    request_kwargs={"read_timeout": 10, "connect_timeout": 10},
-)
+updater = tg.Updater(TOKEN, workers=min(32, os.cpu_count() + 4), request_kwargs={"read_timeout": 10, "connect_timeout": 10})
 telethn = TelegramClient("licht", APP_ID, API_HASH)
 dispatcher = updater.dispatcher
 
