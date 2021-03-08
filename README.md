@@ -51,5 +51,6 @@ For queries or any issues regarding the bot please open an issue ticket or visit
 + [SawadaTsunayoshi](https://github.com/TsunayoshiSawada)
 + [Pokurt](https://github.com/pokurt)
 + [Userbotindo](https://github.com/userbotindo)
++ [IGRIS_BOT](https://github.com/HellxGodLike/IGRIS_BOT)
 
 Should any be missing kindly let us know at [Zero Union](https://t.me/ZeroBotSupport) or simply submit a pull request on the readme.
