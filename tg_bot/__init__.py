@@ -99,6 +99,7 @@ else:
         sw = None
         log.warning("Can't connect to SpamWatch!")
 
+#Redis
 REDIS_URL = Config.REDIS_URI
 REDIS = StrictRedis.from_url(REDIS_URL,decode_responses=True)
 
