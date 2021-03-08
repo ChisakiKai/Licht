@@ -35,6 +35,7 @@ Intellivoid-SPB
 rich
 psutil
 humanize
+fontTools
 ujson
 jikanpy
 hachoir
