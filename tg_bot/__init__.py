@@ -99,6 +99,13 @@ else:
         sw = None
         log.warning("Can't connect to SpamWatch!")
 
+REDIS_URL = Config.REDIS_URI
+REDIS = StrictRedis.from_url(REDIS_URL,decode_responses=True)
+
+try:
+    REDIS.ping()
+    LOGGER.info("Your redis server is now alive!")
+
 updater = tg.Updater(
     TOKEN,
     workers=min(32, os.cpu_count() + 4),
