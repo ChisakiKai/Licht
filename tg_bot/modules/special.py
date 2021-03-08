@@ -62,7 +62,6 @@ def get_help(chat):
 
 __mod_name__ = "Special"
 
-
 SNIPE_HANDLER = CommandHandler(
     "snipe", snipe, pass_args=True, filters=CustomFilters.sudo_filter
 )
