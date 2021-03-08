@@ -149,9 +149,6 @@ def check_afk(update: Update, context: CallbackContext, user_id: int, fst_name: 
             )
             update.effective_message.reply_text(res, parse_mode="html")
 
-def __gdpr__(user_id):
-    sql.rm_afk(user_id)
-
 
 from tg_bot.modules.language import gs
 
