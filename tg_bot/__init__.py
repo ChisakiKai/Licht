@@ -77,7 +77,6 @@ CASH_API_KEY = kigconfig.get("CASH_API_KEY")
 TIME_API_KEY = kigconfig.get("TIME_API_KEY")
 WALL_API = kigconfig.get("WALL_API")
 LASTFM_API_KEY = kigconfig.get("LASTFM_API_KEY")
-STRICT_GMUTE = kigconfig.getboolean("STRICT_GMUTE", False)
 try:
     CF_API_KEY = kigconfig.get("CF_API_KEY")
     log.info("AI antispam powered by Intellivoid.")
