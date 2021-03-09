@@ -59,9 +59,13 @@ def no_longer_afk(update: Update, context: CallbackContext):
             return
         firstname = update.effective_user.first_name
         try:
-            message.reply_text(
+            options = {
                 "{} is no longer AFK!\nTime you were AFK for: {}".format(firstname, end_afk_time))
-        except Exception:
+            ]
+            chosen_option = random.choice(options)
+            update.effective_message.reply_text(
+                chosen_option.format(firstname))
+        except:
             return
 
 
