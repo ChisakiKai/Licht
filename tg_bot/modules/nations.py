@@ -35,6 +35,7 @@ def check_user_id(user_id: int, context: CallbackContext) -> Optional[str]:
         reply = None
     return reply
 
+
 @dev_plus
 @gloggable
 def addsudo(update: Update, context: CallbackContext) -> str:
@@ -75,10 +76,7 @@ def addsudo(update: Update, context: CallbackContext) -> str:
         json.dump(data, outfile, indent=4)
 
     update.effective_message.reply_text(
-        rt
-        + "\nSuccessfully promoted {} to Sudo!".format(
-            user_member.first_name
-        )
+        rt + "\nSuccessfully promoted {} to Sudo!".format(user_member.first_name)
     )
 
     log_message = (
@@ -91,7 +89,6 @@ def addsudo(update: Update, context: CallbackContext) -> str:
         log_message = f"<b>{html.escape(chat.title)}:</b>\n" + log_message
 
     return log_message
-
 
 
 @sudo_plus
@@ -152,7 +149,6 @@ def addsupport(
     return log_message
 
 
-
 @sudo_plus
 @gloggable
 def addwhitelist(update: Update, context: CallbackContext) -> str:
@@ -206,7 +202,6 @@ def addwhitelist(update: Update, context: CallbackContext) -> str:
         log_message = f"<b>{html.escape(chat.title)}:</b>\n" + log_message
 
     return log_message
-
 
 
 @sudo_plus
@@ -269,7 +264,6 @@ def addsardegna(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-
 @dev_plus
 @gloggable
 def removesudo(update: Update, context: CallbackContext) -> str:
@@ -310,7 +304,6 @@ def removesudo(update: Update, context: CallbackContext) -> str:
     else:
         message.reply_text("This user is not a Sudo user!")
         return ""
-
 
 
 @sudo_plus
@@ -355,7 +348,6 @@ def removesupport(update: Update, context: CallbackContext) -> str:
         return ""
 
 
-
 @sudo_plus
 @gloggable
 def removewhitelist(update: Update, context: CallbackContext) -> str:
@@ -397,7 +389,6 @@ def removewhitelist(update: Update, context: CallbackContext) -> str:
         return ""
 
 
-
 @sudo_plus
 @gloggable
 def removesardegna(update: Update, context: CallbackContext) -> str:
@@ -437,6 +428,7 @@ def removesardegna(update: Update, context: CallbackContext) -> str:
     else:
         message.reply_text("This user is not a Sardegna Nation!")
         return ""
+
 
 # I added extra new lines
 nations = """ Licht has bot access levels we call as *"Nations Levels"*
@@ -533,8 +525,10 @@ def devlist(update: Update, context: CallbackContext):
 
 from tg_bot.modules.language import gs
 
+
 def get_help(chat):
     return gs(chat, "nation_help")
+
 
 SUDO_HANDLER = CommandHandler(("addsudo", "adddragon"), addsudo)
 SUPPORT_HANDLER = CommandHandler(("addsupport", "adddemon"), addsupport)

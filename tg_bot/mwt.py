@@ -1,7 +1,7 @@
 import time
 
 
-class MWT():
+class MWT:
     """Memoize With Timeout"""
 
     _caches = {}
