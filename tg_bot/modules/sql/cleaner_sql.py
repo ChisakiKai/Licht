@@ -179,9 +179,7 @@ def __load_cleaner_list():
     global CLEANER_CHATS
 
     try:
-        GLOBAL_IGNORE_COMMANDS = {
-            for x in SESSION.query(CleanerBlueTextGlobal).all()
-        }
+        for x in SESSION.query(CleanerBlueTextGlobal).all()
     finally:
         SESSION.close()
 
