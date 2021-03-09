@@ -99,14 +99,11 @@ else:
         sw = None
         log.warning("Can't connect to SpamWatch!")
 
-REDIS = StrictRedis.from_url(REDIS_URL,decode_responses=True)
-try:
-    REDIS.ping()
-    LOGGER.info("Your redis server is now alive!")
-except BaseException:
-    raise Exception("Your redis server is not alive, please check again.")
-
-updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
+updater = tg.Updater(
+    TOKEN,
+    workers=min(32, os.cpu_count() + 4),
+    request_kwargs={"read_timeout": 10, "connect_timeout": 10},
+)
 telethn = TelegramClient("licht", APP_ID, API_HASH)
 dispatcher = updater.dispatcher
 
