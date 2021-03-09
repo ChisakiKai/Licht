@@ -1,6 +1,6 @@
 import logging
 import os
-import sys
+import sys, json
 import time
 import spamwatch
 import telegram.ext as tg
@@ -10,26 +10,27 @@ from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid, ChannelInv
 from pyrogram.types import Chat, User
 from configparser import ConfigParser
 from rich.logging import RichHandler
-
 StartTime = time.time()
 
+def get_user_list(__init__, key):
+    with open("{}/tg_bot/{}".format(os.getcwd(), __init__), "r") as json_file:
+        return json.load(json_file)[key]
+
 # enable logging
-FORMAT = "%(message)s"
-logging.basicConfig(
-    handlers=[RichHandler()], level=logging.INFO, format=FORMAT, datefmt="[%X]"
-)
+FORMAT = "[Plunderer] %(message)s"
+logging.basicConfig(handlers=[RichHandler()], level=logging.INFO, format=FORMAT, datefmt="[%X]")
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 log = logging.getLogger("rich")
 
-log.info("Licht is starting. | An Zero Union Project. | Licensed under GPLv3.")
+log.info("[LICHT] Licht is starting. | An Zero Union Project. | Licensed under GPLv3.")
 
-log.info("Not affiliated to Azur Lane or Yostar in any way whatsoever.")
-log.info("Project maintained by: github.com/ChisakiKai (t.me/Anomaliii)")
+log.info("[LICHT] Not affiliated to Plunderer or Legendary in any way whatsoever.")
+log.info("[LICHT] Project maintained by: github.com/ChisakiKai (t.me/Anomaliii)")
 
 # if version < 3.6, stop bot.
-if sys.version_info[0] < 3 or sys.version_info[1] < 6:
+if sys.version_info[0] < 3 or sys.version_info[1] < 7:
     log.error(
-        "You MUST have a python version of at least 3.6! Multiple features depend on this. Bot quitting."
+        "[LICHT] You MUST have a python version of at least 3.7! Multiple features depend on this. Bot quitting."
     )
     quit(1)
 
@@ -60,18 +61,12 @@ MESSAGE_DUMP = kigconfig.getfloat("MESSAGE_DUMP")
 GBAN_LOGS = kigconfig.getfloat("GBAN_LOGS")
 NO_LOAD = kigconfig.get("NO_LOAD").split()
 NO_LOAD = list(map(str, NO_LOAD))
-SUDO_USERS = kigconfig.get("SUDO_USERS").split()
-SUDO_USERS = list(map(int, SUDO_USERS))
-DEV_USERS = kigconfig.get("DEV_USERS").split()
-DEV_USERS = list(map(int, DEV_USERS))
-SUPPORT_USERS = kigconfig.get("SUPPORT_USERS").split()
-SUPPORT_USERS = list(map(int, SUPPORT_USERS))
-SARDEGNA_USERS = kigconfig.get("SARDEGNA_USERS").split()
-SARDEGNA_USERS = list(map(int, SARDEGNA_USERS))
-WHITELIST_USERS = kigconfig.get("WHITELIST_USERS").split()
-WHITELIST_USERS = list(map(int, WHITELIST_USERS))
-SPAMMERS = kigconfig.get("SPAMMERS").split()
-SPAMMERS = list(map(int, SPAMMERS))
+SUDO_USERS = get_user_list("elevated_users.json", "sudos")
+DEV_USERS = get_user_list("elevated_users.json", "devs")
+SUPPORT_USERS = get_user_list("elevated_users.json", "supports")
+SARDEGNA_USERS = get_user_list("elevated_users.json", "sardegnas")
+WHITELIST_USERS = get_user_list("elevated_users.json", "whitelists")
+SPAMMERS = get_user_list("elevated_users.json", "spammers")
 spamwatch_api = kigconfig.get("spamwatch_api")
 CASH_API_KEY = kigconfig.get("CASH_API_KEY")
 TIME_API_KEY = kigconfig.get("TIME_API_KEY")
@@ -79,9 +74,9 @@ WALL_API = kigconfig.get("WALL_API")
 LASTFM_API_KEY = kigconfig.get("LASTFM_API_KEY")
 try:
     CF_API_KEY = kigconfig.get("CF_API_KEY")
-    log.info("AI antispam powered by Intellivoid.")
+    log.info("[NLP] AI antispam powered by Intellivoid.")
 except:
-    log.info("No Coffeehouse API key provided.")
+    log.info("[NLP] No Coffeehouse API key provided.")
     CF_API_KEY = None
 
 
@@ -99,21 +94,11 @@ else:
         sw = None
         log.warning("Can't connect to SpamWatch!")
 
-updater = tg.Updater(
-    TOKEN,
-    workers=min(32, os.cpu_count() + 4),
-    request_kwargs={"read_timeout": 10, "connect_timeout": 10},
-)
+updater = tg.Updater(TOKEN, workers=min(32, os.cpu_count() + 4), request_kwargs={"read_timeout": 10, "connect_timeout": 10})
 telethn = TelegramClient("licht", APP_ID, API_HASH)
 dispatcher = updater.dispatcher
 
-kp = Client(
-    "LichtPyro",
-    api_id=APP_ID,
-    api_hash=API_HASH,
-    bot_token=TOKEN,
-    workers=min(32, os.cpu_count() + 4),
-)
+kp = Client("LichtPyro", api_id=APP_ID, api_hash=API_HASH, bot_token=TOKEN, workers=min(32, os.cpu_count() + 4))
 apps = []
 apps.append(kp)
 
