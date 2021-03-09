@@ -59,20 +59,9 @@ def no_longer_afk(update: Update, context: CallbackContext):
             return
         firstname = update.effective_user.first_name
         try:
-            options = [
-                "{} is here!",
-                "{} is back!",
-                "{} is now in the chat!",
-                "{} is awake!",
-                "{} is back online!",
-                "{} is finally here!",
-                "Welcome back! {}",
-                "Where is {}?\nIn the chat!",
-            ]
-            chosen_option = random.choice(options)
-            update.effective_message.reply_text(
-                chosen_option.format(firstname))
-        except:
+            message.reply_text(
+                "{} is no longer AFK!\nTime you were AFK for: {}".format(firstname, end_afk_time))
+        except Exception:
             return
 
 
@@ -136,13 +125,13 @@ def check_afk(update: Update, context: CallbackContext, user_id: int, fst_name: 
         time = humanize.naturaldelta(datetime.now() - user.time)
 
         if not user.reason:
-            res = "{} is afk.\nLast seen {} ago.".format(
+            res = "{} is AFK.\nLast seen {} ago.".format(
                 fst_name,
                 time
             )
             update.effective_message.reply_text(res)
         else:
-            res = "{} is afk.\nReason: <code>{}</code>\nLast seen {} ago.".format(
+            res = "{} is AFK.\nReason: <code>{}</code>\nLast seen {} ago.".format(
                 html.escape(fst_name),
                 html.escape(user.reason),
                 time
