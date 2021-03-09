@@ -74,76 +74,33 @@ def no_longer_afk(update: Update, context: CallbackContext):
             return
 
 
-def reply_afk(update: Update, context: CallbackContext):
-    bot = context.bot
-    message = update.effective_message
-    userc = update.effective_user
-    userc_id = userc.id
-    if message.entities and message.parse_entities(
-        [MessageEntity.TEXT_MENTION, MessageEntity.MENTION]
-    ):
-        entities = message.parse_entities(
-            [MessageEntity.TEXT_MENTION, MessageEntity.MENTION]
-        )
-
-        chk_users = []
-        for ent in entities:
-            if ent.type == MessageEntity.TEXT_MENTION:
-                user_id = ent.user.id
-                fst_name = ent.user.first_name
-
-                if user_id in chk_users:
-                    return
-                chk_users.append(user_id)
-
-            if ent.type == MessageEntity.MENTION:
-                user_id = get_user_id(
-                    message.text[ent.offset : ent.offset + ent.length]
-                )
-                if not user_id:
-                    # Should never happen, since for a user to become AFK they must have spoken. Maybe changed username?
-                    return
-
-                if user_id in chk_users:
-                    return
-                chk_users.append(user_id)
-
-                try:
-                    chat = bot.get_chat(user_id)
-                except BadRequest:
-                    print(
-                        "Error: Could not fetch userid {} for AFK module".format(
-                            user_id
-                        )
-                    )
-                    return
-                fst_name = chat.first_name
-
-            else:
-                return
-
-            check_afk(update, context, user_id, fst_name, userc_id)
-
-    elif message.reply_to_message:
-        user_id = message.reply_to_message.from_user.id
-        fst_name = message.reply_to_message.from_user.first_name
-        check_afk(update, context, user_id, fst_name, userc_id)
-
-
 def check_afk(update, context, user_id, fst_name, userc_id):
-    if int(userc_id) == int(user_id):
-        return
-    is_afk, reason = sql.check_afk_status(user_id)
-    if is_afk:
-        if not reason:
-            res = "{} is afk".format(fst_name)
-            update.effective_message.reply_text(res, parse_mode=None)
+    if is_user_afk(user_id):
+        reason = afk_reason(user_id)
+        since_afk = get_readable_time((time.time() - float(REDIS.get(f'afk_time_{user_id}'))))
+        if reason == "none":
+            if int(userc_id) == int(user_id):
+                return
+            res = "{} is AFK!\nSince: {}".format(fst_name, since_afk)
+            update.effective_message.reply_text(res)
         else:
-            res = "{} is afk.\nReason: <code>{}</code>".format(
-                html.escape(fst_name), html.escape(reason)
-            )
-            update.effective_message.reply_text(res, parse_mode="html")
+            if int(userc_id) == int(user_id):
+                return
+            res = "{} is AFK! Says it's because of:\n{}\nSince: {}".format(fst_name, reason, since_afk)
+            update.effective_message.reply_text(res)
 
+
+def __user_info__(user_id):
+    is_afk = is_user_afk(user_id)
+    text = ""
+    if is_afk:
+        since_afk = get_readable_time((time.time() - float(REDIS.get(f'afk_time_{user_id}'))))
+        text = "<i>This user is currently afk (away from keyboard).</i>"
+        text += f"\n<i>Since: {since_afk}</i>"
+       
+    else:
+        text = "<i>This user is currently isn't afk (away from keyboard).</i>"
+    return text
 
 def __gdpr__(user_id):
     sql.rm_afk(user_id)
