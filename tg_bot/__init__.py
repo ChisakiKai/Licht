@@ -10,11 +10,14 @@ from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid, ChannelInv
 from pyrogram.types import Chat, User
 from configparser import ConfigParser
 from rich.logging import RichHandler
+
 StartTime = time.time()
 
 # enable logging
 FORMAT = "%(message)s"
-logging.basicConfig(handlers=[RichHandler()], level=logging.INFO, format=FORMAT, datefmt="[%X]")
+logging.basicConfig(
+    handlers=[RichHandler()], level=logging.INFO, format=FORMAT, datefmt="[%X]"
+)
 log = logging.getLogger("rich")
 
 
@@ -27,7 +30,7 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
     log.error(
         "You MUST have a python version of at least 3.6! Multiple features depend on this. Bot quitting."
     )
-    quit(1) 
+    quit(1)
 
 parser = ConfigParser()
 parser.read("config.ini")
