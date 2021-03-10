@@ -1,6 +1,6 @@
 import logging
 import os
-import sys, json
+import sys
 import time
 import spamwatch
 import telegram.ext as tg
@@ -10,34 +10,24 @@ from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid, ChannelInv
 from pyrogram.types import Chat, User
 from configparser import ConfigParser
 from rich.logging import RichHandler
-
 StartTime = time.time()
 
-
-def get_user_list(__init__, key):
-    with open("{}/tg_bot/{}".format(os.getcwd(), __init__), "r") as json_file:
-        return json.load(json_file)[key]
-
-
 # enable logging
-FORMAT = "[Plunderer] %(message)s"
-logging.basicConfig(
-    handlers=[RichHandler()], level=logging.INFO, format=FORMAT, datefmt="[%X]"
-)
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
+FORMAT = "%(message)s"
+logging.basicConfig(handlers=[RichHandler()], level=logging.INFO, format=FORMAT, datefmt="[%X]")
 log = logging.getLogger("rich")
 
-log.info("[LICHT] Licht is starting. | An Zero Union Project. | Licensed under GPLv3.")
 
-log.info("[LICHT] Not affiliated to Plunderer or Legendary in any way whatsoever.")
-log.info("[LICHT] Project maintained by: github.com/ChisakiKai (t.me/Anomaliii)")
+log.info("Licht is now ON. | An Zero Union Project. | Licensed under GPLv3.")
 
+log.info("Not affiliated to Plunderer or Legends in any way whatsoever.")
+log.info("Project maintained by: github.com/ChisakiKai (t.me/Anomaliii)")
 # if version < 3.6, stop bot.
-if sys.version_info[0] < 3 or sys.version_info[1] < 7:
+if sys.version_info[0] < 3 or sys.version_info[1] < 6:
     log.error(
-        "[LICHT] You MUST have a python version of at least 3.7! Multiple features depend on this. Bot quitting."
+        "You MUST have a python version of at least 3.6! Multiple features depend on this. Bot quitting."
     )
-    quit(1)
+    quit(1) 
 
 parser = ConfigParser()
 parser.read("config.ini")
@@ -48,16 +38,17 @@ OWNER_ID = kigconfig.getint("OWNER_ID")
 OWNER_USERNAME = kigconfig.get("OWNER_USERNAME")
 APP_ID = kigconfig.getint("APP_ID")
 API_HASH = kigconfig.get("API_HASH")
-WEBHOOK = kigconfig.getboolean("WEBHOOK", False)
-URL = kigconfig.get("URL", None)
-CERT_PATH = kigconfig.get("CERT_PATH", None)
-PORT = kigconfig.getint("PORT", None)
-INFOPIC = kigconfig.getboolean("INFOPIC", False)
-DEL_CMDS = kigconfig.getboolean("DEL_CMDS", False)
-STRICT_GBAN = kigconfig.getboolean("STRICT_GBAN", False)
-ALLOW_EXCL = kigconfig.getboolean("ALLOW_EXCL", False)
-CUSTOM_CMD = kigconfig.get("CUSTOM_CMD", None)
-BAN_STICKER = kigconfig.get("BAN_STICKER", None)
+WEBHOOK = kigconfig.getboolean("WEBHOOK")
+URL = kigconfig.get("URL")
+CERT_PATH = kigconfig.get("CERT_PATH")
+PORT = kigconfig.getint("PORT")
+INFOPIC = kigconfig.getboolean("INFOPIC")
+DEL_CMDS = kigconfig.getboolean("DEL_CMDS")
+STRICT_GBAN = kigconfig.getboolean("STRICT_GBAN")
+ALLOW_EXCL = kigconfig.getboolean("ALLOW_EXCL")
+CUSTOM_CMD = kigconfig.get("CUSTOM_CMD")
+BAN_STICKER = kigconfig.get("BAN_STICKER")
+WORKERS = kigconfig.getint("WORKERS")
 TOKEN = kigconfig.get("TOKEN")
 DB_URI = kigconfig.get("SQLALCHEMY_DATABASE_URI")
 LOAD = kigconfig.get("LOAD").split()
@@ -66,23 +57,23 @@ MESSAGE_DUMP = kigconfig.getfloat("MESSAGE_DUMP")
 GBAN_LOGS = kigconfig.getfloat("GBAN_LOGS")
 NO_LOAD = kigconfig.get("NO_LOAD").split()
 NO_LOAD = list(map(str, NO_LOAD))
-SUDO_USERS = get_user_list("elevated_users.json", "sudos")
-DEV_USERS = get_user_list("elevated_users.json", "devs")
-SUPPORT_USERS = get_user_list("elevated_users.json", "supports")
-SARDEGNA_USERS = get_user_list("elevated_users.json", "sardegnas")
-WHITELIST_USERS = get_user_list("elevated_users.json", "whitelists")
-SPAMMERS = get_user_list("elevated_users.json", "spammers")
+SUDO_USERS = kigconfig.get("SUDO_USERS").split()
+SUDO_USERS = list(map(int, SUDO_USERS))
+DEV_USERS = kigconfig.get("DEV_USERS").split()
+DEV_USERS = list(map(int, DEV_USERS))
+SUPPORT_USERS = kigconfig.get("SUPPORT_USERS").split()
+SUPPORT_USERS = list(map(int, SUPPORT_USERS))
+SARDEGNA_USERS = kigconfig.get("SARDEGNA_USERS").split()
+SARDEGNA_USERS = list(map(int, SARDEGNA_USERS))
+WHITELIST_USERS = kigconfig.get("WHITELIST_USERS").split()
+WHITELIST_USERS = list(map(int, WHITELIST_USERS))
+SPAMMERS = kigconfig.get("SPAMMERS").split()
+SPAMMERS = list(map(int, SPAMMERS))
 spamwatch_api = kigconfig.get("spamwatch_api")
 CASH_API_KEY = kigconfig.get("CASH_API_KEY")
 TIME_API_KEY = kigconfig.get("TIME_API_KEY")
 WALL_API = kigconfig.get("WALL_API")
 LASTFM_API_KEY = kigconfig.get("LASTFM_API_KEY")
-try:
-    CF_API_KEY = kigconfig.get("CF_API_KEY")
-    log.info("[NLP] AI antispam powered by Intellivoid.")
-except:
-    log.info("[NLP] No Coffeehouse API key provided.")
-    CF_API_KEY = None
 
 
 SUDO_USERS.append(OWNER_ID)
@@ -99,21 +90,11 @@ else:
         sw = None
         log.warning("Can't connect to SpamWatch!")
 
-updater = tg.Updater(
-    TOKEN,
-    workers=min(32, os.cpu_count() + 4),
-    request_kwargs={"read_timeout": 10, "connect_timeout": 10},
-)
+updater = tg.Updater(TOKEN, workers=WORKERS)
 telethn = TelegramClient("licht", APP_ID, API_HASH)
 dispatcher = updater.dispatcher
 
-kp = Client(
-    "LichtPyro",
-    api_id=APP_ID,
-    api_hash=API_HASH,
-    bot_token=TOKEN,
-    workers=min(32, os.cpu_count() + 4),
-)
+kp = Client("LichtPyro", api_id=APP_ID, api_hash=API_HASH, bot_token=TOKEN)
 apps = []
 apps.append(kp)
 
